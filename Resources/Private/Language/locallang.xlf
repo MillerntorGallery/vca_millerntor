@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-02-04T12:27:00Z" product-name="vca_millerntor">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_vcamillerntor_domain_model_galerie">
+				<source>Galerie</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_galerie.name">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_galerie.adresse">
+				<source>adresse</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_galerie.austellungen">
+				<source>austellungen</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung">
+				<source>Ausstellung</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung.title">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung.start">
+				<source>start</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung.end">
+				<source>end</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_ausstellung.werke">
+				<source>werke</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler">
+				<source>Kuenstler</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.name">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.decription">
+				<source>decription</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.logo">
+				<source>logo</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.werk">
+				<source>werk</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_vcamillerntor_domain_model_werk">
+				<source>Werk</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.title">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.media">
+				<source>media</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.artist">
+				<source>artist</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,36 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Verhalten</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <switchableControllerActions>
+            <TCEforms>
+              <label>Template des Plugins</label>
+              <config>
+                <type>select</type>
+                <items>
+                   <numIndex index="0">
+                     <numIndex index="0">Listenansicht</numIndex>
+                     <numIndex index="1">Kuenstler->list</numIndex>
+                   </numIndex>
+                   <numIndex index="1">
+                     <numIndex index="0">Teaseransicht</numIndex>
+                     <numIndex index="1">Kuenstler->teaser</numIndex>
+                   </numIndex>
+                   <numIndex index="2">
+                     <numIndex index="0">Detailansicht</numIndex>
+                     <numIndex index="1">Kuenstler->show</numIndex>
+                   </numIndex>
+                 </items>
+              </config>
+            </TCEforms>
+          </switchableControllerActions>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

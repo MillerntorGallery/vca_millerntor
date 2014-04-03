@@ -1,0 +1,71 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+<f:flashMessages />
+<script src="http://millerntorgallery.org/js/lemmon-slider.js"></script>
+<hr />
+ <div class="theme-carousel">
+      
+      <div id="carousel" class="carousel ">
+          <ul>
+
+	<f:for each="{kuenstlers}" as="kuenstler">	
+		<li>
+			<div class="well">
+			<f:link.action action="show"  pageUid="310" arguments="{kuenstler : kuenstler}"><f:image src="uploads/tx_vcamillerntor/{kuenstler.logo}" width="200" alt="{kuenstler.name}" /> </f:link.action>
+            <h3><f:link.action action="show" pageUid="310" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+            </div>
+        </li>
+	</f:for>
+ </ul>
+      </div> 
+      <div class="controls">
+      <!-- a href="#" class="prev-page">Prev Page</a-->
+      <a href="#" class="prev-slide"></a> 
+      <a href="#" class="next-slide"></a>
+      <!-- a href="#" class="next-page">Next Page</a-->
+      </div>
+
+    </div>
+      <script type="text/javascript">
+      window.onload = function(){
+
+        // slider 1
+        $( '#carousel' ).lemmonSlider({
+          infinite: true
+          });
+        // run
+  sliderTimeout = setInterval( "sliderAutoplay()", 6000 );
+}
+var sliderTimeout = null;
+var counter=1;
+// slider autoplay function
+function sliderAutoplay(){
+
+    $( '#carousel' ).trigger( 'nextSlide' );
+
+
+}
+// pause slider function
+function sliderPause(){
+
+    clearInterval( sliderTimeout );
+
+}
+
+    </script>  
+
+<!--f:link.action action="new">New Kuenstler</f:link.action-->
+</f:section>

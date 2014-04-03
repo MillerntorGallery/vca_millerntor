@@ -1,0 +1,57 @@
+<div class="carousel slide" id="myCarousel">
+    <div class="carousel-inner">
+    	<f:if condition="{werk.media -> f:count()} > 1">
+	    	<f:then>
+				<f:for each="{werk.media}" as="image" iteration="iterator">
+			    	<div class="item<f:if condition="{iterator.isFirst}"> active</f:if>">  	 
+			        	<f:image src="uploads/tx_vcamillerntor/{image}" alt="{werk.title}"  />
+						<div class="carousel-caption">
+			                      <h4>{werk.title}</h4>
+			                      <p>
+			                     	<ul>
+			            	<f:for each="{werk.artist}" as="artist">
+			            	<li>
+			            		<f:link.action action="show" pageUid="310" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
+			            	</li>
+			            	</f:for>
+			            	</ul>	
+			            	<p>{werk.description}</p></p>
+			            </div>
+			        </div>
+				</f:for>
+			</f:then>
+			<f:else>
+    			<div class="item active">  	 
+		        	<f:image src="uploads/tx_vcamillerntor/{werk.media.0}" alt="{werk.title}"  />
+					<div class="carousel-caption">
+		                      <h4>{werk.title}</h4>
+		                      <p>
+		                     	<ul>
+		            	<f:for each="{werk.artist}" as="artist">
+		            	<li>
+		            		<f:link.action action="show" pageUid="310" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
+		            	</li>
+		            	</f:for>
+		            	</ul>	
+		            	<p>{werk.description}</p></p>
+		            </div>
+		        </div>
+  			</f:else>
+		</f:if>    
+    </div>
+    
+    <f:if condition="{werk.media -> f:count()} > 1">
+    <a class="left carousel-control" data-slide="prev" href="#myCarousel">‹</a>
+    <a class="right carousel-control" data-slide="next" href="#myCarousel">›</a>
+    <script>
+    	!function ($) { 
+    		$(function(){  
+    			$('#myCarousel .carousel-inner div').first().addClass('active');
+    			$('#myCarousel').carousel({
+    				interval:4000,
+    				pause: 'hover' 
+    			});
+    		});
+    	}(window.jQuery)</script>
+    </f:if>  
+</div>    

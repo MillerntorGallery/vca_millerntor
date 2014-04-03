@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-02-04T12:27:00Z" product-name="vca_millerntor">
+		<header/>
+		<body>
+
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="adresse.description">
+				<source>adresse</source>
+			</trans-unit>
+			<trans-unit id="austellungen.description">
+				<source>austellungen</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

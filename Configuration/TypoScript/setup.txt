@@ -1,0 +1,51 @@
+plugin.tx_vcamillerntor {
+	view {
+		templateRootPath = {$plugin.tx_vcamillerntor.view.templateRootPath}
+		partialRootPath = {$plugin.tx_vcamillerntor.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_vcamillerntor.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_vcamillerntor.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+page {
+	includeJS {
+		
+	}
+	includeCSS {
+		
+	}
+}	
+
+
+plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-vca-millerntor table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-vca-millerntor table th {
+		font-weight:bold;
+	}
+
+	.tx-vca-millerntor table td {
+		vertical-align:top;
+	}
+)
+
+plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE >

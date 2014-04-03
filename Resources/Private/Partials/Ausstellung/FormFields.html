@@ -1,0 +1,16 @@
+<label for="title">
+	<f:translate key="tx_vcamillerntor_domain_model_ausstellung.title" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="title" /><br />
+<label for="description">
+	<f:translate key="tx_vcamillerntor_domain_model_ausstellung.description" />
+</label><br />
+	<f:form.textarea property="description" cols="40" rows="15" /><br />
+<label for="start">
+	<f:translate key="tx_vcamillerntor_domain_model_ausstellung.start" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="start"  value="{ausstellung.start->f:format.date()}" /><br />
+<label for="end">
+	<f:translate key="tx_vcamillerntor_domain_model_ausstellung.end" />
+</label><br />
+	<f:form.textfield property="end"  value="{ausstellung.end->f:format.date()}" /><br />

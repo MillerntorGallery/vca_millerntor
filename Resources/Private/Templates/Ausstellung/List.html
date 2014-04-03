@@ -1,0 +1,43 @@
+<f:layout name="Bootstrap" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<header class="well"><h3>Ausstellungen</h3></header>
+
+<f:flashMessages />
+
+
+<div id="container">
+	<!--tr>
+		<th><f:translate key="tx_vcamillerntor_domain_model_ausstellung.title" /></th>
+		<th><f:translate key="tx_vcamillerntor_domain_model_ausstellung.description" /></th>
+		<th><f:translate key="tx_vcamillerntor_domain_model_ausstellung.start" /></th>
+		<th><f:translate key="tx_vcamillerntor_domain_model_ausstellung.end" /></th>
+		<th> </th>
+		<th> </th>
+	</tr-->
+
+	<f:for each="{ausstellungs}" as="ausstellung">
+		<div class="item">  
+			<f:link.action action="show" arguments="{ausstellung : ausstellung}"><h2> {ausstellung.title}</h2></f:link.action>
+			<f:link.action action="show" arguments="{ausstellung : ausstellung}"> {ausstellung.start -> f:format.date()} - {ausstellung.end -> f:format.date()}</f:link.action>
+			<br />
+			<p> {ausstellung.description}</p>
+			<!--td><f:link.action action="edit" arguments="{ausstellung : ausstellung}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{ausstellung : ausstellung}">Delete</f:link.action></td-->
+		</div>
+	</f:for>
+</div>
+
+<!--f:link.action action="new">New Ausstellung</f:link.action-->
+</f:section>

@@ -1,0 +1,14 @@
+plugin.tx_vcamillerntor {
+	view {
+		# cat=plugin.tx_vcamillerntor/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:vca_millerntor/Resources/Private/Templates/
+		# cat=plugin.tx_vcamillerntor/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:vca_millerntor/Resources/Private/Partials/
+		# cat=plugin.tx_vcamillerntor/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:vca_millerntor/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_vcamillerntor//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
