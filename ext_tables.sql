@@ -138,7 +138,7 @@ CREATE TABLE tx_vcamillerntor_domain_model_werk (
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	media text NOT NULL,
+	media int(11) unsigned DEFAULT '0' NOT NULL,
 	artist int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

@@ -4,7 +4,7 @@
 			<div class="page-header"><h1>{kuenstler.name}</h1></div>
 			<div class="row-fluid">
 			<div class="span4">	
-				<f:image src="uploads/tx_vcamillerntor/{kuenstler.logo}" alt="{kuenstler.name}"  />	
+				<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.logo.0.originalResource.title}"  treatIdAsReference="1" />	
 			</div>
 			<div class="span2">
 				<ul class="nav">
@@ -29,7 +29,7 @@
 			<f:for each="{kuenstler.werk}" as="werk">
     			<div class="item">  	 
         			<f:link.action action="show" pluginName="kuenstler" controller="Werk" arguments="{werk : werk}"> 
-						<f:image src="uploads/tx_vcamillerntor/{werk.media.0}" alt="bar" width='300' />
+						<f:image src="{werk.media.0.uid}" alt="{werk.media.0.originalResource.title}" width='300'  treatIdAsReference="1" />
 					</f:link.action>
         		</div>
     		</f:for>

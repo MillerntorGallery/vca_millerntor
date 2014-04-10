@@ -27,9 +27,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:for each="{kuenstlers}" as="kuenstler">
 		<div class="item"> 
-			<f:link.action action="show" pageUid="310" arguments="{kuenstler : kuenstler}"><f:image src="uploads/tx_vcamillerntor/{kuenstler.logo}" width="200" alt="{kuenstler.name}" /> </f:link.action>
+			<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}">
+				<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
+			</f:link.action>
 			
-			<h3><f:link.action action="show" pageUid="310" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+			<h3><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
 			<p><f:format.crop maxCharacters="80" append="&nbsp;[...]">{kuenstler.decription}</f:format.crop></p>
 			<!--td><f:link.action action="edit" arguments="{kuenstler : kuenstler}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{kuenstler : kuenstler}">Delete</f:link.action></td-->

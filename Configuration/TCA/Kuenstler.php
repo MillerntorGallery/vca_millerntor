@@ -141,8 +141,6 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 					'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.logo',
 					'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('logo',
 							array(
-									'minitems' => 0,
-									'maxitems' => 1,
 									'appearance' => array(
 											'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
 									),
@@ -181,7 +179,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 				'type' => 'select',
 				'foreign_table' => 'tx_vcamillerntor_domain_model_werk',
 				'MM' => 'tx_vcamillerntor_werk_kuenstler_mm',
-				'MM_opposite_field' => 'uid_foreign',
+				'MM_opposite_field' => 'artist',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,

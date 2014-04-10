@@ -10,7 +10,8 @@
 		{kuenstler.decription}
 	</div>
 	<div class="span6">	
-		<f:image src="uploads/tx_vcamillerntor/{kuenstler.logo}" alt="{kuenstler.name}"  />	
+		<f:debug title="logo">{kuenstler}</f:debug>
+		<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}"  treatIdAsReference="1" />	
 	</div>
 </div>
 </div>
@@ -19,8 +20,8 @@
 		<f:for each="{kuenstler.werk}" as="werk">
     	<div class="item">  	 
         	<!--f:for each="{werk.media}" as="med"-->
-			<f:link.action action="show" pageUid="311" pluginName="werke" controller="Werk" arguments="{werk : werk}"> 
-			<f:image src="uploads/tx_vcamillerntor/{werk.media.0}" alt="bar" width='300' />
+			<f:link.action action="show" pageUid="6" pluginName="werke" controller="Werk" arguments="{werk : werk}"> 
+				<f:image src="{werk.media.0.uid}" alt="{werk.media.0.originalResource.title}" width='300'  treatIdAsReference="1" />
 			</f:link.action>
 			
 			<!--/f:for-->	
@@ -29,7 +30,7 @@
             <ul>
             	<f:for each="{werk.artist}" as="artist">
             	<li>
-            		<f:link.action action="show" pageUid="310" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
+            		<f:link.action action="show" pageUid="7" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
             	</li>
             	</f:for>
             </ul>	

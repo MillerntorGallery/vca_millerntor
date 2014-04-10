@@ -3,6 +3,12 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+# Entwicklungsumgebung
+# ExtBase Reflection Cache AUS
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_reflection']['backend'] = 't3lib_cache_backend_NullBackend';
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_object']['backend'] = 't3lib_cache_backend_NullBackend';
+
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	'VCA.' . $_EXTKEY,
 	'Ausstellungen',

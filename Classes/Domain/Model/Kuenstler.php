@@ -52,7 +52,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * logo
 	 *
-	 * @var \string
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
 	protected $logo;
 
@@ -85,6 +85,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		 * You may modify the constructor of this class instead
 		 */
 		$this->werk = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->logo = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 
@@ -129,21 +130,47 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the logo
 	 *
-	 * @return \string $logo
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $logo
 	 */
 	public function getLogo() {
-		return $this->logo;
+		//return $this->logo;
+		$imageFiles = array();
+		/** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo */
+		foreach ($this->logo as $image) {
+			$imageFiles[] = $image->getOriginalResource()->toArray();
+		}
+		return $imageFiles;
 	}
 
 	/**
 	 * Sets the logo
 	 *
-	 * @param \string $logo
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $logo
 	 * @return void
 	 */
 	public function setLogo($logo) {
 		$this->logo = $logo;
 	}
+	/**
+	 * Adds a Media element
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo
+	 * @return void
+	 */
+	public function addLogo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $logo) {
+		$this->logo->attach($logo);
+	}
+	
+	/**
+	 * Removes a Media element
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $mediaToRemove The Kuenstler to be removed
+	 * @return void
+	 */
+	public function removeLogo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $mediaToRemove) {
+		$this->logo->detach($mediaToRemove);
+	}
+	
 
 	/**
 	 * Returns the werk

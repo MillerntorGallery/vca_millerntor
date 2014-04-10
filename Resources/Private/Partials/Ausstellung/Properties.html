@@ -12,8 +12,8 @@
 
 	<f:for each="{ausstellung.werke}" as="werk">
     	<div class="item">  	 
-			<f:link.action action="show" pageUid="311" pluginName="werke" controller="Werk" arguments="{werk : werk}"> 
-				<f:image src="uploads/tx_vcamillerntor/{werk.media.0}" alt="{werk.title}" width='300' />
+			<f:link.action action="show" pageUid="6" pluginName="werke" controller="Werk" arguments="{werk : werk}"> 
+				<f:image src="{werk.media.0.uid}" alt="{werk.media.0.originalResource.title}" width="300" treatIdAsReference="1" />
 			</f:link.action>
             	
             <h3 class="name">{werk.title}</h3>
