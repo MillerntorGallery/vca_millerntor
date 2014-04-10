@@ -95,7 +95,7 @@ CREATE TABLE tx_vcamillerntor_domain_model_kuenstler (
 	name varchar(255) DEFAULT '' NOT NULL,
 	decription text NOT NULL,
 	url text DEFAULT '' NOT NULL,
-	logo text NOT NULL,
+	logo int(11) DEFAULT '0' NOT NULL,
 	werk int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

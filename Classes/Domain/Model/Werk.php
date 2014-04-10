@@ -52,7 +52,7 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * media
 	 *
-	 * @var \string
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
 	protected $media;
 
@@ -71,6 +71,7 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function __construct() {
 		//Do not remove the next line: It would break the functionality
 		$this->initStorageObjects();
+		//print_r($this->media);
 	}
 
 	/**
@@ -85,6 +86,7 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		 * You may modify the constructor of this class instead
 		 */
 		$this->artist = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -128,23 +130,56 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the media
 	 *
-	 * @return \string $media
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
 	public function getMedia() {
+		$imageFiles = array();
+		/** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $image */
+		foreach ($this->media as $image) {
+			$imageFiles[] = $image->getOriginalResource()->toArray();
+		}
+		return $imageFiles;
 		//return $this->media;
-		return explode(',', $this->media);
+		//return explode(',', $this->media);
+		/*return 'lala';
+		if (!is_object($this->media)){
+			return null;
+		} elseif ($this->media instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+			$this->media->_loadRealInstance();
+		}
+		return $this->media->getOriginalResource();
+		*/
 	}
 
 	/**
 	 * Sets the media
 	 *
-	 * @param \string $media
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $media
 	 * @return void
 	 */
 	public function setMedia($media) {
 		$this->media = $media;
 	}
-
+	/**
+	 * Adds a Media element
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $media
+	 * @return void
+	 */
+	public function addMedia(\TYPO3\CMS\Extbase\Domain\Model\FileReference $media) {
+		$this->media->attach($media);
+	}
+	
+	/**
+	 * Removes a Media element
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $mediaToRemove The Kuenstler to be removed
+	 * @return void
+	 */
+	public function removeMedia(\TYPO3\CMS\Extbase\Domain\Model\FileReference $mediaToRemove) {
+		$this->media->detach($mediaToRemove);
+	}
+	
 	/**
 	 * Adds a Kuenstler
 	 *

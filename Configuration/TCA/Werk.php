@@ -123,7 +123,7 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 			),
 			'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
 		),
-		'media' => array(
+/*		'media' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_werk.media',
 			'config' => array(
@@ -136,6 +136,32 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 				'disallowed' => '',
 			),
 		),
+*/
+			'media' => array(
+					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
+					'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('media',
+							array(
+									'appearance' => array(
+											'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+									),
+									// custom configuration for displaying fields in the overlay/reference table
+									// to use the imageoverlayPalette instead of the basicoverlayPalette
+									'foreign_types' => array(
+											'0' => array(
+													'showitem' => '
+                                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                                --palette--;;filePalette'
+											),
+											\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
+													'showitem' => '
+                                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                                --palette--;;filePalette'
+											),
+									)
+							),
+							$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+					)
+			),
 		'artist' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_werk.artist',
