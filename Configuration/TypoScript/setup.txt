@@ -14,7 +14,9 @@ plugin.tx_vcamillerntor {
 }
 
 page {
-	includeJS {
+	includeJSFooterlibs {
+		default003 = EXT:vca_millerntor/Resources/Public/JavaScript/isotope/jquery.isotope.js
+		default004 = EXT:vca_millerntor/Resources/Public/JavaScript/application.js
 		
 	}
 	includeCSS {
@@ -49,3 +51,5 @@ plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE (
 )
 
 plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE >
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:vca_millerntor/Configuration/TypoScript/library.ts">

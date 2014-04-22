@@ -25,16 +25,16 @@ jQuery(document).ready(function() {
 	  var setupOptions = jQuery.extend( {}, defaultOptions, {
         itemSelector : '.item',
         masonry : {
-          columnWidth : 310,
+          columnWidth : 330,
           gutterWidth: 15
         },
         masonryHorizontal : {
-          rowHeight: 320,
+          rowHeight: 350,
           gutterHeight: 15
         },
         
         cellsByColumn : {
-          columnWidth : 300,
+          columnWidth : 330,
   
         }, 
         getSortData : {

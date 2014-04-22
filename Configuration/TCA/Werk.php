@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 	'ctrl' => $TCA['tx_vcamillerntor_domain_model_werk']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, media, artist',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, media, artist,ausstellung',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, media, artist,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, media, artist,ausstellung,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -198,6 +198,21 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 				),
 			),
 		),
+		'ausstellung' => array(
+					'exclude' => 0,
+					'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_werk.ausstellungen',
+					'config' => array(
+							'type' => 'select',
+							'foreign_table' => 'tx_vcamillerntor_domain_model_ausstellung',
+							'MM' => 'tx_vcamillerntor_ausstellung_werk_mm',
+							'MM_opposite_field' => 'werke',
+							'size' => 10,
+							'autoSizeMax' => 30,
+							'maxitems' => 9999,
+							'multiple' => 0,
+			
+					),
+			),
 	),
 );
 

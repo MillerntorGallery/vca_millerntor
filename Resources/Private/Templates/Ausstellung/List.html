@@ -28,11 +28,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</tr-->
 
 	<f:for each="{ausstellungs}" as="ausstellung">
-		<div class="item">  
+		<div class="item well">  
 			<f:link.action action="show" arguments="{ausstellung : ausstellung}"><h2> {ausstellung.title}</h2></f:link.action>
-			<f:link.action action="show" arguments="{ausstellung : ausstellung}"> {ausstellung.start -> f:format.date()} - {ausstellung.end -> f:format.date()}</f:link.action>
+			<f:link.action action="show" arguments="{ausstellung : ausstellung}"> <f:format.date format="d.m">{ausstellung.start}</f:format.date> - <f:format.date format="d.m.Y">{ausstellung.end}</f:format.date></f:link.action>
 			<br />
-			<p> {ausstellung.description}</p>
+			<p> <f:format.html>{ausstellung.description}</f:format.html></p>
 			<!--td><f:link.action action="edit" arguments="{ausstellung : ausstellung}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{ausstellung : ausstellung}">Delete</f:link.action></td-->
 		</div>

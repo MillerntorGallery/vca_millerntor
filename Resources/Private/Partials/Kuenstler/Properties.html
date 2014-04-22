@@ -1,43 +1,40 @@
-<div class="well">
-<div class="row-fluid">
-	<div class="span12">
+
+<div class="row">
+	<div class="col-xs-3">
+		<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
+	</div>
+	<div class="col-xs-9">
 		<h2>{kuenstler.name}</h2>
+		{kuenstler.decription}
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
-		{kuenstler.decription}
-	</div>
-	<div class="span6">	
-		<f:debug title="logo">{kuenstler}</f:debug>
-		<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}"  treatIdAsReference="1" />	
-	</div>
-</div>
-</div>
-<div id="container" class="row-fluid">
-	<div class="span9">
+<div class="row">
+	<div class="col-xs-9 col-xs-offset-3">
+<div id="container" >
+	
 		<f:for each="{kuenstler.werk}" as="werk">
     	<div class="item">  	 
         	<!--f:for each="{werk.media}" as="med"-->
-			<f:link.action action="show" pageUid="6" pluginName="werke" controller="Werk" arguments="{werk : werk}"> 
+			<f:link.action action="show" pageUid="6" pluginName="werke" controller="Werk" arguments="{werk : werk}" class="img-link"> 
 				<f:image src="{werk.media.0.uid}" alt="{werk.media.0.originalResource.title}" width='300'  treatIdAsReference="1" />
 			</f:link.action>
 			
 			<!--/f:for-->	
             	
             <h3 class="name">{werk.title}</h3>
-            <ul>
+            <ul class="work-artists">
             	<f:for each="{werk.artist}" as="artist">
             	<li>
             		<f:link.action action="show" pageUid="7" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
             	</li>
             	</f:for>
             </ul>	
-            <p>{werk.description}</p>
 
         </div>
     </f:for>
-	</div>
 	
+	
+</div>
+</div>
 </div>

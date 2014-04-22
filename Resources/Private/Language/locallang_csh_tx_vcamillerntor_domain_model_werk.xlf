@@ -16,6 +16,9 @@
 			<trans-unit id="artist.description">
 				<source>artist</source>
 			</trans-unit>
+			<trans-unit id="ausstellungen.description">
+				<source>ausstellungen</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
