@@ -27,7 +27,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:for each="{kuenstlers}" as="kuenstler">
 		<div class="item"> 
-			<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}">
+			<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}" class="img-link">
 				<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
 			</f:link.action>
 			
