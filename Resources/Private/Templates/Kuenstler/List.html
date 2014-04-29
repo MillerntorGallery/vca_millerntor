@@ -17,26 +17,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 
 <div id="container">
-	<!--tr>
-		<th><f:translate key="tx_vcamillerntor_domain_model_kuenstler.name" /></th>
-		<th><f:translate key="tx_vcamillerntor_domain_model_kuenstler.decription" /></th>
-		<th><f:translate key="tx_vcamillerntor_domain_model_kuenstler.logo" /></th>
-		<th> </th>
-		<th> </th>
-	</tr-->
-
-	<f:for each="{kuenstlers}" as="kuenstler">
-		<div class="item"> 
-			<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}" class="img-link">
-				<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
-			</f:link.action>
-			
-			<h3><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
-			<!-- p><f:format.crop maxCharacters="80" append="&nbsp;[...]">{kuenstler.decription}</f:format.crop></p-->
-			<!--td><f:link.action action="edit" arguments="{kuenstler : kuenstler}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{kuenstler : kuenstler}">Delete</f:link.action></td-->
-		</div>
-	</f:for>
+	<f:render partial="Kuenstler/Items" arguments="{kuenstlers:kuenstlers}" />
 </div>
 
 <!--f:link.action action="new">New Kuenstler</f:link.action-->

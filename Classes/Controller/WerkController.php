@@ -61,7 +61,20 @@ class WerkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	public function showAction(\VCA\VcaMillerntor\Domain\Model\Werk $werk) {
 		$this->view->assign('werk', $werk);
 	}
-
+	/**
+	 * action insertRecord
+	 *
+	 * @return void
+	 */
+	public function insertRecordAction() {
+		if(isset($this->settings['displayItem'])) {
+	
+			$uid = $this->settings['displayItem'];
+			$this->view->assign('werk', $this->werkRepository->findOneByUid($uid));
+		} else {
+			//TODO: stop displaying view
+		}
+	}
 	/**
 	 * action new
 	 *

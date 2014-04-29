@@ -49,6 +49,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	public function listAction() {
 		$kuenstlers = $this->kuenstlerRepository->findAll();
+		
 		$this->view->assign('kuenstlers', $kuenstlers);
 	}
 
@@ -78,6 +79,20 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	public function showAction(\VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstler) {
 		$this->view->assign('kuenstler', $kuenstler);
+	}
+	/**
+	 * action insertRecord
+	 *
+	 * @return void
+	 */
+	public function insertRecordAction() {
+		if(isset($this->settings['displayItem'])) {
+		
+			$uid = $this->settings['displayItem'];
+			$this->view->assign('kuenstler', $this->kuenstlerRepository->findOneByUid($uid));
+		} else {
+			//TODO: stop displaying view
+		}
 	}
 
 	/**

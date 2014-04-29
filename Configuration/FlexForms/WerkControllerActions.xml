@@ -15,15 +15,15 @@
                 <items>
                    <numIndex index="0">
                      <numIndex index="0">Listenansicht</numIndex>
-                     <numIndex index="1">Kuenstler->list</numIndex>
+                     <numIndex index="1">Werk->list</numIndex>
                    </numIndex>
                    <numIndex index="1">
                      <numIndex index="0">Teaseransicht</numIndex>
-                     <numIndex index="1">Kuenstler->teaser</numIndex>
+                     <numIndex index="1">Werk->teaser</numIndex>
                    </numIndex>
                    <numIndex index="2">
                      <numIndex index="0">Detailansicht</numIndex>
-                     <numIndex index="1">Kuenstler->insertRecord</numIndex>
+                     <numIndex index="1">Werk->insertRecord</numIndex>
                    </numIndex>
                  </items>
               </config>
@@ -34,7 +34,7 @@
               <label>item</label>
               <config>
                 <type>select</type>
-                <foreign_table>tx_vcamillerntor_domain_model_kuenstler</foreign_table>
+                <foreign_table>tx_vcamillerntor_domain_model_werk</foreign_table>
               </config>
             </TCEforms>
           </settings.displayItem>

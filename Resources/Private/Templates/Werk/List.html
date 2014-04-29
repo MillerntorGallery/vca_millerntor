@@ -12,29 +12,10 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Listing for Werk</h1>
+<h1>Werke</h1>
 
 <f:flashMessages />
-
-<table  class="tx_vcamillerntor" >
-	<tr>
-		<th><f:translate key="tx_vcamillerntor_domain_model_werk.title" /></th>
-		<th><f:translate key="tx_vcamillerntor_domain_model_werk.description" /></th>
-		<th><f:translate key="tx_vcamillerntor_domain_model_werk.media" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{werks}" as="werk">
-		<tr>
-			<td><f:link.action action="show" arguments="{werk : werk}"> {werk.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{werk : werk}"> {werk.description}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{werk : werk}"> {werk.media}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{werk : werk}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{werk : werk}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Werk</f:link.action>
+<div id="container">
+	<f:render partial="Werk/Items" arguments="{werks:werks}" />
+</div>
 </f:section>

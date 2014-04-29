@@ -4,6 +4,16 @@ jQuery(document).ready(function() {
 	var $container = jQuery('#container');
 	var iso_page = $container.is('ul');
 	if($container ) {
+		
+		//find flip_container in container
+		
+		
+		$('#container .flip_container').each(function(index, element) {
+			var $element = $(element);
+			var height = $element.find('.front img').height();
+			$element.css('height',height);
+			$element.find('.back .well').css('height',height);
+		});
 	
 	var $container = jQuery('#container'),
           // object that will keep track of options
@@ -104,6 +114,11 @@ jQuery(document).ready(function() {
 			return true;
 		}
       });
+      
+      
+      
+      
+      
 /*
       var hashChanged = false;
 

@@ -31,7 +31,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_ob
 	'VCA.' . $_EXTKEY,
 	'Werke',
 	array(
-		'Werk' => 'list, show, new, create, edit, update, delete',
+		'Werk' => 'list,insertRecord, show, new, create, edit, update, delete',
 		
 	),
 	// non-cacheable actions
@@ -44,8 +44,8 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_ob
 	'VCA.' . $_EXTKEY,
 	'Kuenstler',
 	array(
-		'Kuenstler' => 'list, show, new, create, edit, update, delete',
-		'Werk' => 'list, show, new, create, edit, update, delete',
+		'Kuenstler' => 'list,insertRecord, show, new, create, edit, update, delete',
+		'Werk' => 'list,insertRecord, show, new, create, edit, update, delete',
 		
 	),
 	// non-cacheable actions

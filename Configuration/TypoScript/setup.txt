@@ -9,7 +9,7 @@ plugin.tx_vcamillerntor {
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
-		rewrittenPropertyMapper = 1
+		 rewrittenPropertyMapper = 1
 	}
 }
 
@@ -53,3 +53,4 @@ plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE (
 plugin.tx_vcamillerntor._CSS_DEFAULT_STYLE >
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:vca_millerntor/Configuration/TypoScript/library.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:vca_millerntor/Configuration/TypoScript/tt_content.ts">

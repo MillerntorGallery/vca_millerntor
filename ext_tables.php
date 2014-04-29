@@ -144,4 +144,14 @@ $pluginSignature = 'vcamillerntor_kuenstler';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/KuenstlerControllerActions.xml');
 
+$pluginSignature = 'vcamillerntor_werke';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/WerkControllerActions.xml');
+
+
+// add tables to "insert Record" content element
+t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_ausstellung');
+t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_kuenstler');
+t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_werk');
+
 ?>

@@ -9,6 +9,6 @@ plugin.tx_vcamillerntor {
 	}
 	persistence {
 		# cat=plugin.tx_vcamillerntor//a; type=string; label=Default storage PID
-		storagePid =
+		storagePid = 4
 	}
 }
