@@ -1,23 +1,3 @@
 <div class="item"> 
-		<div class="flip_container vert" style="width:300px;height:300px;">
-			<div class="flip_card shadow">
-				<div class="front face">
-					<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}" class="img-link">
-						<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
-					</f:link.action>
-				</div>
-				<div class="back face center ">
-					<div class="well">
-					    <h3 class="name"><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
-					    
-			            <div class="clearfix"></div>
-		            	<f:format.html>{kuenstler.decription}</f:format.html>
-			    	</div>
-				</div>
-			</div>
-		</div>		
-		<h3><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
-			<!-- p><f:format.crop maxCharacters="80" append="&nbsp;[...]">{kuenstler.decription}</f:format.crop></p-->
-			<!--td><f:link.action action="edit" arguments="{kuenstler : kuenstler}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{kuenstler : kuenstler}">Delete</f:link.action></td-->
-	</div>
+	<f:render partial="Kuenstler/Flip" arguments="{kuenstler:kuenstler}" />		
+</div>

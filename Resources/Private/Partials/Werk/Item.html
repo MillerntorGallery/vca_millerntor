@@ -1,29 +1,3 @@
 <div class="item">  
-	<div class="flip_container vert" style="width:300px;height:300px;">
-		<div class="flip_card shadow">
-			<div class="front face">	 
-				<f:link.action action="show" pageUid="6" pluginName="werke" title="{werk.title}" controller="Werk" arguments="{werk : werk}" class="img-link"> 
-					<f:image src="{werk.media.0.uid}" alt="{werk.title}" width="300" treatIdAsReference="1" />
-				</f:link.action>
-			</div>
-			<div class="back face center ">
-				<div class="well">
-				    <h3 class="name">{werk.title}</h3>
-				    <ul class="work-artists">
-		            	<f:for each="{werk.artist}" as="artist">
-		            	<li>
-		            		<f:link.action action="show" pageUid="7" pluginName="kuenstler" controller="Kuenstler" arguments="{kuenstler : artist}"> {artist.name}</f:link.action>
-		            	</li>
-		            	</f:for>
-		            </ul>	
-		            <div class="clearfix"></div>
-	            	<f:format.html>{werk.description}</f:format.html>
-	            	<f:link.action action="show" pageUid="6" pluginName="werke" title="{werk.title}" controller="Werk" arguments="{werk : werk}" class="img-link"> 
-						mehr
-					</f:link.action>
-		    	</div>
-			</div>
-		</div>
-	</div>
-       <h3 class="name">{werk.title}</h3>
+	<f:render partial="Werk/Flip" arguments="{werk:werk}" />
 </div>
