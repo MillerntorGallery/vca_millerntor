@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 	'ctrl' => $TCA['tx_vcamillerntor_domain_model_kuenstler']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, decription, logo, werk',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, decription, logo, werk,url,kontaktEmail,kontaktFb,kontaktTw,kontaktIg,kontaktOther',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, decription, logo, werk,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, decription, logo, werk,--div--;Kontakt,url,kontaktEmail,kontaktFb,kontaktTw,kontaktIg,kontaktOther,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -168,8 +168,53 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.url',
 				'config' => array(
 						'type' => 'input',
-						'size' => 30,
-						'eval' => 'trim,required'
+						'size' => 60,
+						'eval' => 'trim'
+				),
+		),
+		'kontaktEmail' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.kontaktEmail',
+				'config' => array(
+						'type' => 'input',
+						'size' => 60,
+						'eval' => 'trim'
+				),
+		),
+		'kontaktFb' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.kontaktFb',
+				'config' => array(
+						'type' => 'input',
+						'size' => 60,
+						'eval' => 'trim'
+				),
+		),
+		'kontaktTw' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.kontaktTw',
+				'config' => array(
+						'type' => 'input',
+						'size' => 60,
+						'eval' => 'trim'
+				),
+		),
+		'kontaktIg' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.kontaktIg',
+				'config' => array(
+						'type' => 'input',
+						'size' => 60,
+						'eval' => 'trim'
+				),
+		),
+		'kontaktOther' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.kontaktOther',
+				'config' => array(
+						'type' => 'input',
+						'size' => 60,
+						'eval' => 'trim'
 				),
 		),
 		'werk' => array(

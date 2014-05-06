@@ -62,6 +62,48 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Werk>
 	 */
 	protected $werk;
+	
+	/**
+	 * website of artist
+	 *
+	 * @var \string
+	 */
+	protected $url;
+
+	/**
+	 * email of artist
+	 *
+	 * @var \string
+	 */
+	protected $kontaktEmail;
+
+	/**
+	 * facebook of artist
+	 *
+	 * @var \string
+	 */
+	protected $kontaktFb;
+
+	/**
+	 * twitter of artist
+	 *
+	 * @var \string
+	 */
+	protected $kontaktTw;
+
+	/**
+	 * instgram of artist
+	 *
+	 * @var \string
+	 */
+	protected $kontaktIg;
+
+	/**
+	 * other link of artist
+	 *
+	 * @var \string
+	 */
+	protected $kontaktOther;
 
 	/**
 	 * __construct
@@ -125,6 +167,116 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setDecription($decription) {
 		$this->decription = $decription;
+	}
+
+	/**
+	 * Returns the url of website
+	 *
+	 * @return \string $url
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Sets the url
+	 *
+	 * @param \string $url
+	 * @return void
+	 */
+	public function setUrl($url) {
+		$this->url = $url;
+	}
+	
+	/**
+	 * Returns the url of website
+	 *
+	 * @return \string $kontaktEmail
+	 */
+	public function getKontaktEmail() {
+		return $this->kontaktEmail;
+	}
+
+	/**
+	 * Sets the kontaktEmail
+	 *
+	 * @param \string $kontaktEmail
+	 * @return void
+	 */
+	public function setKontaktEmail($kontaktEmail) {
+		$this->kontaktEmail = $kontaktEmail;
+	}
+	/**
+	 * Returns the facebook
+	 *
+	 * @return \string $kontaktFb
+	 */
+	public function getKontaktFb() {
+		return $this->kontaktFb;
+	}
+
+	/**
+	 * Sets the kontaktFb
+	 *
+	 * @param \string $kontaktFb
+	 * @return void
+	 */
+	public function setKontaktFb($kontaktFb) {
+		$this->kontaktFb = $kontaktFb;
+	}
+	/**
+	 * Returns the url of website
+	 *
+	 * @return \string $kontaktTw
+	 */
+	public function getKontaktTw() {
+		return $this->kontaktTw;
+	}
+
+	/**
+	 * Sets the kontaktTw
+	 *
+	 * @param \string $kontaktTw
+	 * @return void
+	 */
+	public function setKontaktTw($kontaktTw) {
+		$this->kontaktTw = $kontaktTw;
+	}
+	/**
+	 * Returns the url of website
+	 *
+	 * @return \string $kontaktIg
+	 */
+	public function getKontaktIg() {
+		return $this->kontaktIg;
+	}
+
+	/**
+	 * Sets the kontaktIg
+	 *
+	 * @param \string $kontaktIg
+	 * @return void
+	 */
+	public function setKontaktIg($kontaktIg) {
+		$this->kontaktIg = $kontaktIg;
+	}
+	/**
+	 * Returns the url of website
+	 *
+	 * @return \string $kontaktOther
+	 */
+	public function getKontaktOther() {
+		return $this->kontaktOther;
+	}
+
+	/**
+	 * Sets the kontaktOther
+	 *
+	 * @param \string $kontaktOther
+	 * @return void
+	 */
+	public function setKontaktOther($kontaktOther) {
+		$this->kontaktOther = $kontaktOther;
 	}
 
 	/**

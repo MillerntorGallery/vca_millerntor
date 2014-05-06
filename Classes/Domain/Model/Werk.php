@@ -62,6 +62,47 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler>
 	 */
 	protected $artist;
+	/**
+	 * ausstellung
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung>
+	 */
+	protected $ausstellung;
+	
+	/**
+	 * material
+	 *
+	 * @var \string
+	 */
+	protected $material;
+
+	/**
+	 * sizes
+	 *
+	 * @var \string
+	 */
+	protected $sizes;
+
+	/**
+	 * year
+	 *
+	 * @var \string
+	 */
+	protected $year;
+
+	/**
+	 * technic
+	 *
+	 * @var \string
+	 */
+	protected $technic;
+
+	/**
+	 * buyUrl
+	 *
+	 * @var \string
+	 */
+	protected $buyUrl;
 
 	/**
 	 * __construct
@@ -218,6 +259,140 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setArtist(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $artist) {
 		$this->artist = $artist;
 	}
+	/**
+	 * Adds a Ausstellung
+	 *
+	 * @param \VCA\VcaMillerntor\Domain\Model\Ausstellung $ausstellung
+	 * @return void
+	 */
+	public function addAusstellung(\VCA\VcaMillerntor\Domain\Model\Ausstellung $ausstellung) {
+		$this->ausstellung->attach($ausstellung);
+	}
+
+	/**
+	 * Removes a Ausstellung
+	 *
+	 * @param \VCA\VcaMillerntor\Domain\Model\Ausstellung $ausstellungToRemove The Ausstellung to be removed
+	 * @return void
+	 */
+	public function removeAusstellung(\VCA\VcaMillerntor\Domain\Model\Ausstellung $ausstellungToRemove) {
+		$this->ausstellung->detach($ausstellungToRemove);
+	}
+
+	/**
+	 * Returns the ausstellung
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung> $ausstellung
+	 */
+	public function getAusstellung() {
+		return $this->ausstellung;
+	}
+
+	/**
+	 * Sets the ausstellung
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung> $ausstellung
+	 * @return void
+	 */
+	public function setAusstellung(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $ausstellung) {
+		$this->ausstellung = $ausstellung;
+	}
+	
+	/**
+	 * Returns the material
+	 *
+	 * @return \string $material
+	 */
+	public function getMaterial() {
+		return $this->material;
+	}
+	
+	/**
+	 * Sets the material
+	 *
+	 * @param \string $material
+	 * @return void
+	 */
+	public function setMaterial($material) {
+		$this->material = $material;
+	}
+	
+	/**
+	 * Returns the year
+	 *
+	 * @return \string $year
+	 */
+	public function getYear() {
+		return $this->year;
+	}
+	
+	/**
+	 * Sets the year
+	 *
+	 * @param \string $year
+	 * @return void
+	 */
+	public function setYear($year) {
+		$this->year = $year;
+	}
+	
+	/**
+	 * Returns the technic
+	 *
+	 * @return \string $technic
+	 */
+	public function getTechnic() {
+		return $this->technic;
+	}
+	
+	/**
+	 * Sets the technic
+	 *
+	 * @param \string $technic
+	 * @return void
+	 */
+	public function setTechnic($technic) {
+		$this->technic = $technic;
+	}
+	
+	/**
+	 * Returns the buyUrl
+	 *
+	 * @return \string $buyUrl
+	 */
+	public function getBuyUrl() {
+		return $this->buyUrl;
+	}
+	
+	/**
+	 * Sets the buyUrl
+	 *
+	 * @param \string $buyUrl
+	 * @return void
+	 */
+	public function setBuyUrl($buyUrl) {
+		$this->buyUrl = $buyUrl;
+	}
+	
+	/**
+	 * Returns the sizes
+	 *
+	 * @return \string $sizes
+	 */
+	public function getSizes() {
+		return $this->sizes;
+	}
+	
+	/**
+	 * Sets the sizes
+	 *
+	 * @param \string $sizes
+	 * @return void
+	 */
+	public function setSizes($sizes) {
+		$this->sizes = $sizes;
+	}
+	
 
 }
 ?>

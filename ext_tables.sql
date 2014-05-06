@@ -95,6 +95,12 @@ CREATE TABLE tx_vcamillerntor_domain_model_kuenstler (
 	name varchar(255) DEFAULT '' NOT NULL,
 	decription text NOT NULL,
 	url text DEFAULT '' NOT NULL,
+	kontaktEmail text DEFAULT '' NOT NULL,
+	kontaktFb text DEFAULT '' NOT NULL,
+	kontaktTw text DEFAULT '' NOT NULL,
+	kontaktIg text DEFAULT '' NOT NULL,
+	kontaktOther text DEFAULT '' NOT NULL,
+	
 	logo int(11) DEFAULT '0' NOT NULL,
 	werk int(11) DEFAULT '0' NOT NULL,
 
@@ -141,7 +147,14 @@ CREATE TABLE tx_vcamillerntor_domain_model_werk (
 	media int(11) unsigned DEFAULT '0' NOT NULL,
 	artist int(11) unsigned DEFAULT '0' NOT NULL,
 	ausstellung int(11) unsigned DEFAULT '0' NOT NULL,
-
+	
+	material text NOT NULL,
+	sizes text NOT NULL,
+	year text NOT NULL,
+	technic text NOT NULL,
+	
+	buyUrl text NOT NULL,
+	
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,

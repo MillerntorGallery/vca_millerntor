@@ -51,6 +51,24 @@
 			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.werk">
 				<source>Werk</source>
 			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.url">
+				<source>Webseite</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktEmail">
+				<source>Kontakt-Email</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktFb">
+				<source>Facebook</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktTw">
+				<source>Twitter</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktIg">
+				<source>Instagram</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktOther">
+				<source>Andere</source>
+			</trans-unit>
 
 			<trans-unit id="tx_vcamillerntor_domain_model_werk">
 				<source>Werk</source>
@@ -66,6 +84,24 @@
 			</trans-unit>
 			<trans-unit id="tx_vcamillerntor_domain_model_werk.artist">
 				<source>Artist</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.ausstellung">
+				<source>Ausstellungen</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.material">
+				<source>Material</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.sizes">
+				<source>Masse</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.technic">
+				<source>Technik</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.year">
+				<source>Erstellungs-Jahr</source>
+			</trans-unit>
+			<trans-unit id="tx_vcamillerntor_domain_model_werk.buyUrl">
+				<source>Shop-URL des Werkes</source>
 			</trans-unit>
 
 		</body>
