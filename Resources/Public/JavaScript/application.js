@@ -60,11 +60,14 @@ jQuery(document).ready(function() {
       //first load images than go on...
 	  $container.imagesLoaded(function() {
 		  	//find flip_container in container
-			$('#container .flip_container').each(function(index, element) {
+			$('.flip_container').each(function(index, element) {
 				var $element = $(element);
 				var height = $element.find('.front img').height();
+				var width = $element.find('.front img').width();
 				$element.css('height',height);
+				$element.css('width',width);
 				$element.find('.back .well').css('height',height);
+				$element.find('.back .well').css('width',width);
 			});
 			// set up Isotope	
 			$container.isotope( setupOptions );
