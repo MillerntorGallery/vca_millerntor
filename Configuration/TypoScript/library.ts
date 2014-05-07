@@ -1,6 +1,6 @@
 lib.dropdown.kuenstler = COA
 lib.dropdown.kuenstler {
-	wrap = <div class="artist_select"><select class="form-control">|</select></div>
+	wrap = <div class="artist_select hidden-sm hidden-xs"><select class="form-control">|</select></div>
 	10 = CONTENT
 	10 {
 		table = tx_vcamillerntor_domain_model_kuenstler
