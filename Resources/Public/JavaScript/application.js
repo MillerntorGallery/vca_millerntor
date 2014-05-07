@@ -5,15 +5,7 @@ jQuery(document).ready(function() {
 	var iso_page = $container.is('ul');
 	if($container ) {
 		
-		//find flip_container in container
 		
-		
-		$('#container .flip_container').each(function(index, element) {
-			var $element = $(element);
-			var height = $element.find('.front img').height();
-			$element.css('height',height);
-			$element.find('.back .well').css('height',height);
-		});
 	
 	var $container = jQuery('#container'),
           // object that will keep track of options
@@ -35,7 +27,7 @@ jQuery(document).ready(function() {
 	  var setupOptions = jQuery.extend( {}, defaultOptions, {
         itemSelector : '.item',
         masonry : {
-          columnWidth : 330,
+          
           gutterWidth: 15
         },
         masonryHorizontal : {
@@ -65,8 +57,20 @@ jQuery(document).ready(function() {
         }
       });
   
-      // set up Isotope
-      $container.isotope( setupOptions );
+      //first load images than go on...
+	  $container.imagesLoaded(function() {
+		  	//find flip_container in container
+			$('#container .flip_container').each(function(index, element) {
+				var $element = $(element);
+				var height = $element.find('.front img').height();
+				$element.css('height',height);
+				$element.find('.back .well').css('height',height);
+			});
+			// set up Isotope	
+			$container.isotope( setupOptions );
+		  
+	  });
+      
 
 
 	  

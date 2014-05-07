@@ -15,6 +15,7 @@ plugin.tx_vcamillerntor {
 
 page {
 	includeJSFooterlibs {
+		default002 = EXT:vca_millerntor/Resources/Public/JavaScript/imagesLoaded.min.js
 		default003 = EXT:vca_millerntor/Resources/Public/JavaScript/isotope/jquery.isotope.js
 		default004 = EXT:vca_millerntor/Resources/Public/JavaScript/application.js
 		
