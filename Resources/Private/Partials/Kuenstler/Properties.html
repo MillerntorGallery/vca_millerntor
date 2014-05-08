@@ -1,10 +1,41 @@
-
 <div class="row">
 	<div class="col-xs-3">
 		<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
 	</div>
 	<div class="col-xs-9">
 		<h2>{kuenstler.name}</h2>
+		<f:if condition="{kuenstler.url}">
+	    	<f:link.external  uri="{kuenstler.url}" target="_blank" class="linkExternal">
+					{kuenstler.url}
+			</f:link.external><br />
+		</f:if>
+	    <f:if condition="{kuenstler.email}">
+	    	<f:link.email  email="{kuenstler.email}" class="linkEmail">
+					{kuenstler.email}
+			</f:link.email><br />
+		</f:if>
+		<f:if condition="{kuenstler.facebook}">
+	    	<f:link.external  uri="{kuenstler.facebook}" target="_blank" class="linkExternal linkFb">
+					{kuenstler.facebook}
+			</f:link.external><br />
+		</f:if>
+		<f:if condition="{kuenstler.twitter}">
+	    	<f:link.external  uri="{kuenstler.twitter}" target="_blank" class="linkExternal linkTw">
+					{kuenstler.twitter}
+			</f:link.external><br />
+		</f:if>
+		<f:if condition="{kuenstler.instagram}">
+	    	<f:link.external  uri="{kuenstler.instagram}" target="_blank" class="linkExternal linkIg">
+					{kuenstler.instagram}
+			</f:link.external><br />
+		</f:if>
+		<f:if condition="{kuenstler.other}">
+	    	<f:link.external  uri="{kuenstler.other}" target="_blank" class="linkExternal linkOther">
+					{kuenstler.other}
+			</f:link.external><br />
+		</f:if>
+           <div class="clearfix"></div>
+				            
 		{kuenstler.decription}
 	</div>
 </div>

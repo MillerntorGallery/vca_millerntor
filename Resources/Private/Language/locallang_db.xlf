@@ -54,19 +54,19 @@
 			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.url">
 				<source>Webseite</source>
 			</trans-unit>
-			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktEmail">
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.email">
 				<source>Kontakt-Email</source>
 			</trans-unit>
-			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktFb">
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.facebook">
 				<source>Facebook</source>
 			</trans-unit>
-			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktTw">
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.twitter">
 				<source>Twitter</source>
 			</trans-unit>
-			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktIg">
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.instagram">
 				<source>Instagram</source>
 			</trans-unit>
-			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.kontaktOther">
+			<trans-unit id="tx_vcamillerntor_domain_model_kuenstler.other">
 				<source>Andere</source>
 			</trans-unit>
 

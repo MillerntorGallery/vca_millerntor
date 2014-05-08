@@ -75,35 +75,35 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @var \string
 	 */
-	protected $kontaktEmail;
+	protected $email;
 
 	/**
 	 * facebook of artist
 	 *
 	 * @var \string
 	 */
-	protected $kontaktFb;
+	protected $facebook;
 
 	/**
 	 * twitter of artist
 	 *
 	 * @var \string
 	 */
-	protected $kontaktTw;
+	protected $twitter;
 
 	/**
 	 * instgram of artist
 	 *
 	 * @var \string
 	 */
-	protected $kontaktIg;
+	protected $instagram;
 
 	/**
 	 * other link of artist
 	 *
 	 * @var \string
 	 */
-	protected $kontaktOther;
+	protected $other;
 
 	/**
 	 * __construct
@@ -191,92 +191,92 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the url of website
 	 *
-	 * @return \string $kontaktEmail
+	 * @return \string $email
 	 */
-	public function getKontaktEmail() {
-		return $this->kontaktEmail;
+	public function getEmail() {
+		return $this->email;
 	}
 
 	/**
-	 * Sets the kontaktEmail
+	 * Sets the email
 	 *
-	 * @param \string $kontaktEmail
+	 * @param \string $email
 	 * @return void
 	 */
-	public function setKontaktEmail($kontaktEmail) {
-		$this->kontaktEmail = $kontaktEmail;
+	public function setEmail($email) {
+		$this->email = $email;
 	}
 	/**
 	 * Returns the facebook
 	 *
-	 * @return \string $kontaktFb
+	 * @return \string $facebook
 	 */
-	public function getKontaktFb() {
-		return $this->kontaktFb;
+	public function getFacebook() {
+		return $this->facebook;
 	}
 
 	/**
-	 * Sets the kontaktFb
+	 * Sets the facebook
 	 *
-	 * @param \string $kontaktFb
+	 * @param \string $facebook
 	 * @return void
 	 */
-	public function setKontaktFb($kontaktFb) {
-		$this->kontaktFb = $kontaktFb;
+	public function setFacebook($facebook) {
+		$this->facebook = $facebook;
 	}
 	/**
 	 * Returns the url of website
 	 *
-	 * @return \string $kontaktTw
+	 * @return \string $twitter
 	 */
-	public function getKontaktTw() {
-		return $this->kontaktTw;
+	public function getTwitter() {
+		return $this->twitter;
 	}
 
 	/**
-	 * Sets the kontaktTw
+	 * Sets the twitter
 	 *
-	 * @param \string $kontaktTw
+	 * @param \string $twitter
 	 * @return void
 	 */
-	public function setKontaktTw($kontaktTw) {
-		$this->kontaktTw = $kontaktTw;
+	public function setTwitter($twitter) {
+		$this->twitter = $twitter;
 	}
 	/**
 	 * Returns the url of website
 	 *
-	 * @return \string $kontaktIg
+	 * @return \string $instagram
 	 */
-	public function getKontaktIg() {
-		return $this->kontaktIg;
+	public function getInstagram() {
+		return $this->instagram;
 	}
 
 	/**
-	 * Sets the kontaktIg
+	 * Sets the instagram
 	 *
-	 * @param \string $kontaktIg
+	 * @param \string $instagram
 	 * @return void
 	 */
-	public function setKontaktIg($kontaktIg) {
-		$this->kontaktIg = $kontaktIg;
+	public function setInstagram($instagram) {
+		$this->instagram = $instagram;
 	}
 	/**
 	 * Returns the url of website
 	 *
-	 * @return \string $kontaktOther
+	 * @return \string $other
 	 */
-	public function getKontaktOther() {
-		return $this->kontaktOther;
+	public function getOther() {
+		return $this->other;
 	}
 
 	/**
-	 * Sets the kontaktOther
+	 * Sets the other
 	 *
-	 * @param \string $kontaktOther
+	 * @param \string $other
 	 * @return void
 	 */
-	public function setKontaktOther($kontaktOther) {
-		$this->kontaktOther = $kontaktOther;
+	public function setOther($other) {
+		$this->other = $other;
 	}
 
 	/**
