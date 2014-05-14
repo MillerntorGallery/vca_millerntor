@@ -53,6 +53,8 @@ CREATE TABLE tx_vcamillerntor_domain_model_ausstellung (
 	start int(11) DEFAULT '0' NOT NULL,
 	end int(11) DEFAULT '0' NOT NULL,
 	werke int(11) unsigned DEFAULT '0' NOT NULL,
+	kuenstler int(11) unsigned DEFAULT '0' NOT NULL,
+	
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -103,6 +105,7 @@ CREATE TABLE tx_vcamillerntor_domain_model_kuenstler (
 	
 	logo int(11) DEFAULT '0' NOT NULL,
 	werk int(11) DEFAULT '0' NOT NULL,
+	ausstellung int(11) DEFAULT '0' NOT NULL,	
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -210,6 +213,19 @@ CREATE TABLE tx_vcamillerntor_ausstellung_werk_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
+#
+# Table structure for table 'tx_vcamillerntor_ausstellung_kuenstler_mm'
+#
+CREATE TABLE tx_vcamillerntor_ausstellung_kuenstler_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
 
 #
 # Table structure for table 'tx_vcamillerntor_werk_kuenstler_mm'

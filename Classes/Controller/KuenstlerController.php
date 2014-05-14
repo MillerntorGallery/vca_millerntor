@@ -78,6 +78,9 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function showAction(\VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstler) {
+		$GLOBALS['TSFE']->page['title'] = $kuenstler->getName();
+		$GLOBALS['TSFE']->indexedDocTitle = $kuenstler->getName();
+		
 		$this->view->assign('kuenstler', $kuenstler);
 	}
 	/**

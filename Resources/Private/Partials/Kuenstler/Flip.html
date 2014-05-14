@@ -1,13 +1,13 @@
 <div class="flip_container vert" style="height:300px;">
 			<div class="flip_card shadow">
 				<div class="front face">
-					<f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}" class="img-link">
+					<f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
 						<f:image src="{kuenstler.logo.0.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
 					</f:link.action>
 				</div>
 				<div class="back face center ">
 					<div class="well">
-					    <h3 class="name"><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+					    <h3 class="name"><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
 					    <div class="flip_content">
 						    <f:if condition="{kuenstler.url}">
 						    	<f:link.external  uri="{kuenstler.url}" target="_blank" class="linkExternal">
@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</div>		
-		<h3><f:link.action action="show" pageUid="7" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+		<h3><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
 			<!-- p><f:format.crop maxCharacters="80" append="&nbsp;[...]">{kuenstler.decription}</f:format.crop></p-->
 			<!--td><f:link.action action="edit" arguments="{kuenstler : kuenstler}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{kuenstler : kuenstler}">Delete</f:link.action></td-->

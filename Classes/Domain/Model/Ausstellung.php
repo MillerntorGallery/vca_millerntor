@@ -70,7 +70,14 @@ class Ausstellung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Werk>
 	 */
 	protected $werke;
-
+	
+	/**
+	 * kuenstler
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler>
+	 */
+	protected $kuenstler;
+	
 	/**
 	 * __construct
 	 *
@@ -93,6 +100,7 @@ class Ausstellung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		 * You may modify the constructor of this class instead
 		 */
 		$this->werke = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->kuenstler = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -208,6 +216,44 @@ class Ausstellung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setWerke(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $werke) {
 		$this->werke = $werke;
+	}
+	/**
+	 * Adds a Kuenstler
+	 *
+	 * @param \VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstler
+	 * @return void
+	 */
+	public function addKuenstler(\VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstler) {
+		$this->kuenstler->attach($kuenstler);
+	}
+
+	/**
+	 * Removes a Kuenstler
+	 *
+	 * @param \VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstlerToRemove The Kuenstler to be removed
+	 * @return void
+	 */
+	public function removeKuenstler(\VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstlerToRemove) {
+		$this->kuenstler->detach($kuenstlerToRemove);
+	}
+
+	/**
+	 * Returns the Kuenstler
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler> $kuenstler
+	 */
+	public function getKuenstler() {
+		return $this->kuenstler;
+	}
+
+	/**
+	 * Sets the kuenstler
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler> $kuenstler
+	 * @return void
+	 */
+	public function setKuenstler(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $kuenstler) {
+		$this->kuenstler = $kuenstler;
 	}
 
 }

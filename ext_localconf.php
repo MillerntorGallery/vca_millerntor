@@ -50,7 +50,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_ob
 	),
 	// non-cacheable actions
 	array(
-		'Kuenstler' => 'create, update, delete',
+		'Kuenstler' => 'list,show,create, update, delete',
 		'Werk' => 'create, update, delete',
 		
 	)

@@ -64,6 +64,13 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $werk;
 	
 	/**
+	 * ausstellung
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung>
+	 */
+	protected $ausstellung;
+	
+	/**
 	 * website of artist
 	 *
 	 * @var \string
@@ -127,6 +134,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		 * You may modify the constructor of this class instead
 		 */
 		$this->werk = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->ausstellung = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->logo = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
@@ -341,6 +349,25 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setWerk(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $werk) {
 		$this->werk = $werk;
+	}
+	
+	/**
+	 * Returns the ausstellung
+	 *
+	 * \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung> $ausstellung
+	 */
+	public function getAusstellung() {
+		return $this->ausstellung;
+	}
+
+	/**
+	 * Sets the ausstellung
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung> $ausstellung
+	 * @return void
+	 */
+	public function setAusstellung(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $ausstellung) {
+		$this->ausstellung = $ausstellung;
 	}
 
 }

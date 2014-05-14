@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_vcamillerntor_domain_model_ausstellung'] = array(
 	'ctrl' => $TCA['tx_vcamillerntor_domain_model_ausstellung']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, start, end, werke',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, start, end, werke, kuenstler',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, start, end, werke,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, start, end, werke,kuenstler,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -180,6 +180,42 @@ $TCA['tx_vcamillerntor_domain_model_ausstellung'] = array(
 					),
 				),
 			),
+		),
+		'kuenstler' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_ausstellung.kuenstler',
+				'config' => array(
+						'type' => 'select',
+						'foreign_table' => 'tx_vcamillerntor_domain_model_kuenstler',
+						'MM' => 'tx_vcamillerntor_ausstellung_kuenstler_mm',
+						'size' => 10,
+						'autoSizeMax' => 30,
+						'maxitems' => 9999,
+						'multiple' => 0,
+						'wizards' => array(
+								'_PADDING' => 1,
+								'_VERTICAL' => 1,
+								'edit' => array(
+										'type' => 'popup',
+										'title' => 'Edit',
+										'script' => 'wizard_edit.php',
+										'icon' => 'edit2.gif',
+										'popup_onlyOpenIfSelected' => 1,
+										'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+								),
+								'add' => Array(
+										'type' => 'script',
+										'title' => 'Create new',
+										'icon' => 'add.gif',
+										'params' => array(
+												'table' => 'tx_vcamillerntor_domain_model_kuenstler',
+												'pid' => '###CURRENT_PID###',
+												'setValue' => 'prepend'
+										),
+										'script' => 'wizard_add.php',
+								),
+						),
+				),
 		),
 	),
 );

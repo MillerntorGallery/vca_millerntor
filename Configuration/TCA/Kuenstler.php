@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 	'ctrl' => $TCA['tx_vcamillerntor_domain_model_kuenstler']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, decription, logo, werk,url,email,facebook,twitter,instagram,other',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, decription, logo, werk,ausstellung,url,email,facebook,twitter,instagram,other',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, decription, logo, werk,--div--;Kontakt,url,email,facebook,twitter,instagram,other,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, decription, logo, werk,ausstellung,--div--;Kontakt,url,email,facebook,twitter,instagram,other,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -231,6 +231,21 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 				'multiple' => 0,
 				
 			),
+		),
+		'ausstellung' => array(
+				'exclude' => 0,
+				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.ausstellung',
+				'config' => array(
+						'type' => 'select',
+						'foreign_table' => 'tx_vcamillerntor_domain_model_ausstellung',
+						'MM' => 'tx_vcamillerntor_ausstellung_kuenstler_mm',
+						'MM_opposite_field' => 'kuenstler',
+						'size' => 10,
+						'autoSizeMax' => 30,
+						'maxitems' => 9999,
+						'multiple' => 0,
+		
+				),
 		),
 	),
 );

@@ -22,8 +22,12 @@
                      <numIndex index="1">Kuenstler->teaser</numIndex>
                    </numIndex>
                    <numIndex index="2">
-                     <numIndex index="0">Detailansicht</numIndex>
+                     <numIndex index="0">Detailansicht (Künstler auswaehlen)</numIndex>
                      <numIndex index="1">Kuenstler->insertRecord</numIndex>
+                   </numIndex>
+                   <numIndex index="3">
+                     <numIndex index="0">Detailansicht (generell)</numIndex>
+                     <numIndex index="1">Kuenstler->show</numIndex>
                    </numIndex>
                  </items>
               </config>
