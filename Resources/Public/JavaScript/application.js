@@ -59,6 +59,14 @@ jQuery(document).ready(function() {
   
       //first load images than go on...
 	  $container.imagesLoaded(function() {
+		  	//find text pics
+		  	$('.item .csc-textpic').each(function(index,element) {
+		  		var $element = $(element);
+		  		$element.addClass('flip_container vert');
+		  		$element.find('.csc-textpic-imagewrap').addClass('flip_card shadow');
+		  		$element.find('.csc-textpic-firstcol').addClass('front face');
+		  		$element.find('.csc-textpic-lastcol').addClass('back face');
+		  	});
 		  	//find flip_container in container
 			$('.flip_container').each(function(index, element) {
 				var $element = $(element);
