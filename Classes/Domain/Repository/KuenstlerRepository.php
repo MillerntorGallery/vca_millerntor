@@ -34,5 +34,21 @@ namespace VCA\VcaMillerntor\Domain\Repository;
  */
 class KuenstlerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	protected $defaultOrderings = array(
+       'name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+	/**
+	 * Returns all objects of this repository which belong to a ausstellung.
+	 *
+	 * @return QueryResultInterface|array
+	 * @api
+	 */
+	public function findAllByAusstellung($ausstellung_uid) {
+		$query = $this->createQuery();
+		if(intval($ausstellung_uid) > 0 ) {
+  			$query->matching($query->equals('ausstellung.uid', $ausstellung_uid));
+		}
+  		return $query->execute();
+	}
 }
 ?>

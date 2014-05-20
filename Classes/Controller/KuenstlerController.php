@@ -48,7 +48,12 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function listAction() {
-		$kuenstlers = $this->kuenstlerRepository->findAll();
+		if(!isset($this->settings['showAusstellung'])) {
+			$kuenstlers = $this->kuenstlerRepository->findAll();
+		} else {
+			//only list artists from 2014
+			$kuenstlers = $this->kuenstlerRepository->findAllByAusstellung($this->settings['showAusstellung']);
+		}
 		
 		$this->view->assign('kuenstlers', $kuenstlers);
 	}

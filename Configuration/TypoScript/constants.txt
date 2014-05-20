@@ -11,4 +11,8 @@ plugin.tx_vcamillerntor {
 		# cat=plugin.tx_vcamillerntor//a; type=string; label=Default storage PID
 		storagePid = 4
 	}
+	ausstellung {
+		# cat=plugin.tx_vcamillerntor//a; type=string; label=Show only artists by this Ausstellungs Uid
+		showOnly = 3
+	}	
 }

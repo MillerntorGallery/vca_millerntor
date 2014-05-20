@@ -6,7 +6,9 @@ lib.dropdown.kuenstler {
 		table = tx_vcamillerntor_domain_model_kuenstler
 	  select {
 	  	pidInList = 4
-	    where = deleted=0 AND hidden=0 
+	    where = tx_vcamillerntor_domain_model_kuenstler.deleted=0 AND tx_vcamillerntor_domain_model_kuenstler.hidden=0 AND mm.uid_local = {$plugin.tx_vcamillerntor.ausstellung.showOnly}
+	    //join to select only artists from 2014
+			join = tx_vcamillerntor_ausstellung_kuenstler_mm as mm ON mm.uid_foreign = tx_vcamillerntor_domain_model_kuenstler.uid
 	    orderBy = name
 	  }
 	  renderObj = COA
