@@ -54,7 +54,8 @@ jQuery(document).ready(function() {
 				itemText = name.length ? name : $elem;
 			return itemText.text();
 		  }
-        }
+        },
+        sortBy: 'name',
       });
   
       //first load images than go on...
