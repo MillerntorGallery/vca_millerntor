@@ -10,6 +10,7 @@ plugin.tx_vcamillerntor {
 	features {
 		# uncomment the following line to enable the new Property Mapper.
 		 rewrittenPropertyMapper = 1
+		 skipDefaultArguments = 1
 	}
 }
 
