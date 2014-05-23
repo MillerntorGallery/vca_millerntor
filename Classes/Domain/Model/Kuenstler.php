@@ -48,7 +48,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 * @validate NotEmpty
 	 */
-	protected $normName;
+	//protected $normName;
 
 	/**
 	 * decription
@@ -170,9 +170,9 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @return \string $normName
 	 */
-	public function getNormName() {
+	/*public function getNormName() {
 		return ucfirst($this->normName);
-	}
+	}*/
 	
 	/**
 	 * Sets and normailze the name
@@ -180,7 +180,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \string $name
 	 * @return void
 	 */
-	public function setNormName($name) {
+	/*public function setNormName($name) {
 		$normalizeChars = array(
 				'Š'=>'S', 'š'=>'s', 'Ð'=>'Dj','Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A',
 				'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I',
@@ -192,7 +192,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 				'ă'=>'a', 'î'=>'i', 'â'=>'a', 'ș'=>'s', 'ț'=>'t', 'Ă'=>'A', 'Î'=>'I', 'Â'=>'A', 'Ș'=>'S', 'Ț'=>'T',
 		);
 		$this->normName = strtr($name, $normalizeChars);
-	}
+	}*/
 
 	/**
 	 * Returns the decription
