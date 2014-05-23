@@ -125,6 +125,9 @@ jQuery(document).ready(function() {
 		  		$element.find('.csc-textpic-firstcol').addClass('front face');
 		  		$element.find('.csc-textpic-lastcol').addClass('back face');
 		  	});
+		  	//this timer is just a bugfix on safari
+		  	setTimeout(function() {
+		  		
 		  	//find flip_container in container
 			$('.flip_container').each(function(index, element) {
 				var $element = $(element);
@@ -137,6 +140,8 @@ jQuery(document).ready(function() {
 			});
 			// set up Isotope	
 			$container.isotope( setupOptions );
+		  	}, 1000);
+
 		  
 	  });
       
