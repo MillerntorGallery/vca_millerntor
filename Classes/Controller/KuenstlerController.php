@@ -77,8 +77,9 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			$chars[$char]++;
 		}
 		//print_r($chars);
-		$kuenstlers['alphabet'] = $chars;
-		$this->view->assign('kuenstlers', $kuenstlers);
+		$view_variables['kuenstlers'] = $kuenstlers;
+		$view_variables['alphabet'] = $chars;
+		$this->view->assign('view_variables', $view_variables);
 	}
 
 	/**

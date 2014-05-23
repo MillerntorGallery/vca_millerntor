@@ -15,7 +15,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <div class="well"><header class="page-header"><h1>Supporters A-Z</h1></header>
 	<div class="btn-group" id="filter">
 		<button data-filter="*" type="button" class="btn btn-default">Alle</button>
-		<f:for each="{kuenstlers.alphabet}" as="index" key="char">
+		<f:for each="{view_variables.alphabet}" as="index" key="char">
 	  		<button data-filter=".{char}-char" type="button" class="btn btn-default">{char}</button>
 			<!-- f:debug title="char">{char}</f:debug-->
 		</f:for>
@@ -25,7 +25,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 
 <div id="container">
-	<f:render partial="Kuenstler/Items" arguments="{kuenstlers:kuenstlers}" />
+	<f:render partial="Kuenstler/Items" arguments="{kuenstlers:view_variables.kuenstlers}" />
 </div>
 
 <!--f:link.action action="new">New Kuenstler</f:link.action-->
