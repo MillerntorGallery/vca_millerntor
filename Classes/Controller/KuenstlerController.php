@@ -55,7 +55,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			$kuenstlers = $this->kuenstlerRepository->findAllByAusstellung($this->settings['showAusstellung']);
 		}
 		//setup alphabetical index
-		/*
+		
 		$normalizeChars = array(
 				'Š'=>'S', 'š'=>'s', 'Ð'=>'Dj','Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A',
 				'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I',
@@ -66,12 +66,12 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 				'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ƒ'=>'f',
 				'ă'=>'a', 'î'=>'i', 'â'=>'a', 'ș'=>'s', 'ț'=>'t', 'Ă'=>'A', 'Î'=>'I', 'Â'=>'A', 'Ș'=>'S', 'Ț'=>'T',
 		);
-		*/
+		
 		$chars = array();
 		foreach($kuenstlers as $index=>$artist) {
 			//echo $artist->getName();
 			$char = strtoupper(substr($artist->getName(),0,1));
-			//$char = strtr($char, $normalizeChars);
+			$char = strtr($char, $normalizeChars);
 			//$char = utf8_encode($char);
 			//$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
 			$chars[$char]++;
