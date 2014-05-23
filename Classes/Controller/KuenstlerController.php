@@ -72,7 +72,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			//echo $artist->getName();
 			$char = strtoupper(substr($artist->getName(),0,1));
 			//$char = strtr($char, $normalizeChars);
-			$char = utf8_encode($char);
+			//$char = utf8_encode($char);
 			$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
 			$chars[$char]++;
 		}
