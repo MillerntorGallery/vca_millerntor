@@ -74,7 +74,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			$char = mb_substr($artist->getName(),0,1,'utf-8');
 			$char = strtr($char, $normalizeChars);
 			$char = strtoupper($char);
-			//$kuenstlers[$index]->setNormName($artist->getName());
+			$kuenstlers[$index]->normName = $char;
 			//$char = utf8_encode($char);
 			//$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
 			$chars[$char]++;
