@@ -70,10 +70,12 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		$chars = array();
 		foreach($kuenstlers as $index=>$artist) {
 			//echo $artist->getName();
-			$char = strtoupper(substr($artist->getName(),0,1));
-			//$char = strtr($char, $normalizeChars);
+			//$char = strtoupper(substr($artist->getName(),0,1));
+			$char = mb_substr($artist->getName(),0,1,'utf-8');
+			$char = strtr($char, $normalizeChars);
+			$char = strtoupper($char);
 			//$char = utf8_encode($char);
-			$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
+			//$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
 			$chars[$char]++;
 		}
 		//print_r($chars);
