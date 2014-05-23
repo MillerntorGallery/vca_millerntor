@@ -104,10 +104,10 @@ jQuery(document).ready(function() {
             return parseInt( $elem.find('.number').text(), 10 );
           },
           name : function ( $elem ) {
-            return $elem.find('.name').text();
+            return $elem.find('.normName').text();
           },
 		  alphabetical: function( $elem ) {
-			var name = $elem.find('.name'),
+			var name = $elem.find('.normName'),
 				itemText = name.length ? name : $elem;
 			return itemText.text();
 		  }
