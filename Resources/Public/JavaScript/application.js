@@ -114,6 +114,17 @@ jQuery(document).ready(function() {
         },
         sortBy: 'name',
       });
+	  
+	  // bind filter button click
+	  $('#filter').on( 'click', 'button', function() {
+	    var filterValue = $( this ).attr('data-filter');
+	    $('#filter button').removeClass('active');
+	    $( this ).addClass('active');
+	    //console.log('filter:'+filterValue);
+	    // use filterFn if matches value
+	    //filterValue = filterFns[ filterValue ] || filterValue;
+	    $container.isotope({ filter: filterValue });
+	  });
   
       //first load images than go on...
 	  $container.imagesLoaded(function() {

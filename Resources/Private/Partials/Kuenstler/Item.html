@@ -1,3 +1,4 @@
-<div class="item"> 
+{namespace v=Tx_Vhs_ViewHelpers}
+<div class="item {v:format.substring(content: kuenstler.name, start: '0', length: '1')}-char"> 
 	<f:render partial="Kuenstler/Flip" arguments="{kuenstler:kuenstler}" />		
 </div>

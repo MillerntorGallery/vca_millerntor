@@ -145,7 +145,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \string $name
 	 */
 	public function getName() {
-		return $this->name;
+		return ucfirst($this->name);
 	}
 
 	/**

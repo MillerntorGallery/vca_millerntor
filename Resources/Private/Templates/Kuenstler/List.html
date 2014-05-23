@@ -12,7 +12,15 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<header class="well"><h2>K&uuml;nstler-Index</h2></header>
+<div class="well"><header class="page-header"><h1>Supporters A-Z</h1></header>
+	<div class="btn-group" id="filter">
+		<button data-filter="*" type="button" class="btn btn-default">Alle</button>
+		<f:for each="{kuenstlers.alphabet}" as="index" key="char">
+	  		<button data-filter=".{char}-char" type="button" class="btn btn-default">{char}</button>
+			<!-- f:debug title="char">{char}</f:debug-->
+		</f:for>
+	</div>
+</div>
 
 <f:flashMessages />
 
