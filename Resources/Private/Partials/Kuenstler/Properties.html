@@ -1,10 +1,10 @@
 <div class="row">
 	<div class="col-xs-12 col-md-3 artists-logo">
-		<f:for each="{kuenstler.logo}" as="image" iteration="iterator">
-		<a href="{f:uri.image(src:image.uid,treatIdAsReference:1)}" class="lightbox" rel="gallery">
-			<f:image src="{image.uid}" width="600px" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
-			</a>
-		</f:for>
+		
+				<a href="{f:uri.image(src:kuenstler.logo.uid,treatIdAsReference:1)}" class="lightbox" rel="gallery">
+					<f:image src="{kuenstler.logo.uid}" width="600px" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
+				</a>
+		
 	</div>
 	<div class="col-xs-12 col-md-9">
 		<h2>{kuenstler.name}</h2>

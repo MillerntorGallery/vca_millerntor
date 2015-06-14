@@ -335,7 +335,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		foreach ($this->logo as $image) {
 			$imageFiles[] = $image->getOriginalResource()->toArray();
 		}
-		return $imageFiles;
+		return $imageFiles[0];
 	}
 
 	/**
