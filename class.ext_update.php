@@ -201,8 +201,8 @@ class ext_update {
 				 
 				/** @var \TYPO3\CMS\Core\DataHandling\DataHandler $tce */
 				$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
-				//$tce->start($data, array());					 
-				//$tce->process_datamap();
+				$tce->start($data, array());					 
+				$tce->process_datamap();
 				
 				$message = $arter['noblank'].' found '.$found_value;
 				if ($tce->errorLog) {
