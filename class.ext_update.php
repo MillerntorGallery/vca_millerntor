@@ -23,14 +23,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ext_update {
 
-	const ARTIST_FOLDER_IMAGES = '/media/2015/artists/';
-
 	/**
 	 * Array of flash messages (params) array[][status,title,message]
 	 *
 	 * @var array
 	 */
 	protected $messageArray = array();
+
+	/**
+	 * Array of configuration values (params) array[][key=>value]
+	 *
+	 * @var array
+	 */
+	protected $configurationArray = array();
 
 	/**
 	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
@@ -51,6 +56,11 @@ class ext_update {
 	 * Constructor
 	 */
 	public function __construct() {
+		$this->configurationArray = array(
+			'ausstellungUid'=>'4',
+			'imagePath' => '/media/2015/artists_web/'	
+		);
+		
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
 
 		$this->resourceFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
@@ -63,8 +73,37 @@ class ext_update {
 	 * @return string
 	 */
 	public function main() {
-		$this->processUpdates();
-		return $this->generateOutput();
+		if (t3lib_div::_POST('update_submit') != '') {
+			$this->configurationArray['imagePath'] = t3lib_div::_POST('imagePath');
+			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
+			$this->processUpdates();
+			$content = '<b>Update durchgeführt</b>';
+		} else {
+			$content = $this->generateForm();
+		}
+		
+		
+		return $this->generateOutput($content);
+	}
+	
+	/**
+	 * Shows a formular.
+	 *
+	 * @return string
+	 */
+	protected function generateForm() {
+		return
+		'<form action="' . t3lib_div::getIndpEnv('REQUEST_URI') . '" method="POST">' .
+		'<p>This script will do the following:</p>' .
+		'<ul >' .
+		'<li>Search for images in folder: <input type="text" style="width:300px;" name="imagePath" value="'.$this->configurationArray['imagePath'].'" /></li>' .
+		'<li>Update Artists by Ausstellungs-ID: <input type="text" name="ausstellungUid" value="'.$this->configurationArray['ausstellungUid'].'" /></li>' .
+		'<li></li>' .
+		'</ul>' .
+		'<p><b>Warning!</b> Images will be added</p>' .
+		'<br />' .
+		'<br /><br />' .
+		'<input type="submit" name="update_submit" value="Update" /></form>';
 	}
 
 	/**
@@ -105,31 +144,92 @@ class ext_update {
 		
 		$filesInSubFolder = $folder->getFiles();
 
-		$filearr = array();
+		$file_arr = array();
 		foreach($filesInSubFolder as $file) {
 			//$message = 'Migrated ' . $processedImages . ' category images';
 			//$name
-			$name = str_replace(' ','',strtolower($file->getName()));
+			$name = str_replace(array(' ','-','.','_'),array('','','',''),strtolower($file->getName()));
 			$uid = $file->getUid();
 			$file_arr[$uid] = $name;
 			//if($name == $arter['noblank'])
 			$message = 'File';
 			$status = FlashMessage::INFO;
 				
-			$this->messageArray[] = array($status, $name, $message);
+			//$this->messageArray[] = array($status, $name, $message);
 		}
+		$count_artists = 0;
+		$count_artists_found = 0;
+		$count_artists_notfound = 0;
 		
 		foreach($artists as $arter) {
+			$count_artists++;
 			$found = false;
-			$artistFound = preg_match("/(" . implode(self::$forbidden_name,"|") . ")/i", $arter);
-			
-			$message = 'xx';
-			$status = FlashMessage::INFO;
-			
-			$this->messageArray[] = array($status, $name, $message);
+			$found_key = 0;
+			$found_value = '';
+			foreach($file_arr as $file_key=>$file_val) {
+				$found = preg_match("/" . preg_quote($arter['noblank']) . "/i", $file_val);
+				$found_key = $file_key;
+				$found_value = $file_val;
 				
+				if($found) break;
+			}
+			
+			if($found && $found_key > 0) {
+				//sort old references higher
+				$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery( 
+						'sys_file_reference'
+						, 'uid_foreign = '.$arter['uid']
+						, array('sorting_foreign' => 'sorting_foreign + 1')
+						, array('sorting_foreign')
+				);
+				// $res : richtige Syntax, das kann aber auch heißen dass trotzdem keine Datensätze verändert wurden. daher:
+				$cnt = $GLOBALS['TYPO3_DB']->sql_affected_rows();
+				
+				//insert reference
+				
+				$data = array();
+				$data['sys_file_reference']['NEW'.$found_key] = array(
+					'uid_local' => $found_key,
+					'uid_foreign' => $arter['uid'], // uid of your content record
+					'tablenames' => 'tx_vcamillerntor_domain_model_kuenstler',
+					'fieldname' => 'logo',
+					'pid' => 4, // parent id of the parent page
+					'table_local' => 'sys_file',
+					'sorting_foreign' => '-1',	
+				);
+				$data['tx_vcamillerntor_domain_model_kuenstler'][$arter['uid']] = array('logo' => 'NEW'.$found_key); // set to the number of images?
+				 
+				/** @var \TYPO3\CMS\Core\DataHandling\DataHandler $tce */
+				$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
+				//$tce->start($data, array());					 
+				//$tce->process_datamap();
+				
+				$message = $arter['noblank'].' found '.$found_value;
+				if ($tce->errorLog) {
+				    $message .= 'TCE->errorLog:'.t3lib_utility_Debug::viewArray($tce->errorLog);
+				} else {
+					if($cnt > 0) {
+						$message .= '<br>earlyer images incremended: '.$cnt;
+					}
+				    $message .= '<br>image changed <br>'.t3lib_utility_Debug::viewArray($data);
+				}
+				
+				
+				
+				
+				$status = FlashMessage::OK;
+				$count_artists_found++;
+			} else {
+				$message = $arter['noblank'].' not found';
+				$status = FlashMessage::WARNING;
+				$count_artists_notfound++;
+			}
+			$this->messageArray[] = array($status, $arter['name'], $message);	
 		}
 		
+		$this->messageArray[] = array(FlashMessage::ERROR, 'COUNT', 'Working with '.$count_artists.' artists');
+		$this->messageArray[] = array(FlashMessage::ERROR, 'COUNT found', ' '.$count_artists_found.' artists found');
+		$this->messageArray[] = array(FlashMessage::ERROR, 'COUNT not found', ' '.$count_artists_notfound.' artists NOT found');
 	}
 
 	/**
@@ -146,9 +246,9 @@ class ext_update {
 				throw new \Exception('No default storage set!');
 			}
 			try {
-				$this->artistImageFolder = $storage->getFolder(self::ARTIST_FOLDER_IMAGES);
+				$this->artistImageFolder = $storage->getFolder($this->configurationArray['imagePath']);
 			} catch (\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
-				$this->artistImageFolder = $storage->createFolder(self::ARTIST_FOLDER_IMAGES);
+				$this->artistImageFolder = $storage->createFolder($this->configurationArray['imagePath']);
 			}
 		}
 		return $this->artistImageFolder;
@@ -161,13 +261,14 @@ class ext_update {
 	 */
 	protected function getArtistsNames() {
 		$artists = array();
-		$artistsQuery = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,name', 'tx_vcamillerntor_domain_model_kuenstler', 'deleted=0 AND sys_language_uid=0');
+		$artistsQuery = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,name', 'tx_vcamillerntor_domain_model_kuenstler LEFT JOIN tx_vcamillerntor_ausstellung_kuenstler_mm as mm ON tx_vcamillerntor_domain_model_kuenstler.uid=mm.uid_foreign', 'tx_vcamillerntor_domain_model_kuenstler.deleted=0 AND tx_vcamillerntor_domain_model_kuenstler.sys_language_uid=0 AND mm.uid_local='.$this->configurationArray['ausstellungUid']);
 		while ($artistRow = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($artistsQuery)) {
-			$artists[$artistRow['uid']] = array('uid'=>$artistRow['uid'],'name'=>$artistRow['name'],'noblank'=>str_replace(' ','',strtolower($artistRow['name'])));
+			$artists[$artistRow['uid']] = array('uid'=>$artistRow['uid'],'name'=>$artistRow['name'],'noblank'=>str_replace(array(' ','&','.','-'),array('','','',''),strtolower($artistRow['name'])));
+			/*			
 			$message = 'Artist';
 			$status = FlashMessage::INFO;
-			
 			$this->messageArray[] = array($status, $artistRow['name'], $message);
+			*/
 		}	
 		return $artists;
 	}
@@ -177,8 +278,8 @@ class ext_update {
 	 *
 	 * @return string
 	 */
-	protected function generateOutput() {
-		$output = '';
+	protected function generateOutput($output = '') {
+		
 		foreach ($this->messageArray as $messageItem) {
 			/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
 			$flashMessage = GeneralUtility::makeInstance(
