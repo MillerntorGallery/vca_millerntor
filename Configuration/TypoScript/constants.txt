@@ -13,6 +13,6 @@ plugin.tx_vcamillerntor {
 	}
 	ausstellung {
 		# cat=plugin.tx_vcamillerntor//a; type=string; label=Show only artists by this Ausstellungs Uid
-		showOnly = 3
+		showOnly = 4
 	}	
 }
