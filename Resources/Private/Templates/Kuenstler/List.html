@@ -12,9 +12,9 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<div class="well"><header class="page-header"><h1>Supporters A-Z</h1></header>
+<div class="well"><header class="page-header"><h1><f:translate key="contributors" /> A-Z</h1></header>
 	<div class="btn-group" id="filter">
-		<button data-filter="*" type="button" class="btn btn-default">Alle</button>
+		<button data-filter="*" type="button" class="btn btn-default"><f:translate key="all" /></button>
 		<f:for each="{view_variables.alphabet}" as="index" key="char">
 	  		<button data-filter=".{char}-char" type="button" class="btn btn-default">{char}</button>
 			<!-- f:debug title="char">{char}</f:debug-->

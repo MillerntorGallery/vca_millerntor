@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-06-16T13:23:30Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="all" approved="yes">
+			<source>all</source>
+			<target>alle</target>
+		</trans-unit>
+		<trans-unit id="contributors" approved="yes">
+			<source>Contributors</source>
+			<target>Mitwirkende</target>
+		</trans-unit>
+		<trans-unit id="overview" approved="yes">
+			<source>overview</source>
+			<target>Übersicht</target>
+		</trans-unit>
+		<trans-unit id="presented_by" approved="yes">
+			<source>Presented by:</source>
+			<target>Präsentiert von:</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

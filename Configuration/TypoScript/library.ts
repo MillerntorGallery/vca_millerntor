@@ -1,6 +1,10 @@
 lib.dropdown.kuenstler = COA
 lib.dropdown.kuenstler {
-	wrap = <div class="artist_select hidden-sm hidden-xs"><form action="GET"><select class="form-control" onchange="window.location=this.options[this.selectedIndex].value"><option value="">--Contributors--</option>|</select></form></div>
+	wrap = |</select></form></div>
+	5 = TEXT
+	5.data = LLL:EXT:vca_millerntor/Resources/Private/Language/locallang.xlf:contributors
+	5.wrap = <div class="artist_select hidden-sm hidden-xs"><form action="GET"><select class="form-control" onchange="window.location=this.options[this.selectedIndex].value"><option value="">--|--</option>
+	
 	10 = CONTENT
 	10 {
 		table = tx_vcamillerntor_domain_model_kuenstler
