@@ -45,6 +45,10 @@ class KuenstlerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function findAllByAusstellung($ausstellung_uid) {
 		$query = $this->createQuery();
+		if($GLOBALS['TSFE']->sys_language_uid != 0){
+  			$query->getQuerySettings()->setRespectSysLanguage(FALSE);
+  			$query->getQuerySettings()->setSysLanguageUid($GLOBALS['TSFE']->sys_language_uid);
+  		}	
 		if(intval($ausstellung_uid) > 0 ) {
   			$query->matching($query->equals('ausstellung.uid', $ausstellung_uid));
 		}

@@ -95,6 +95,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'name' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.name',
 			'config' => array(
 				'type' => 'input',
@@ -104,6 +105,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'decription' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.decription',
 			'config' => array(
 				'type' => 'text',
@@ -139,6 +141,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		*/
 			'logo' => array(
 					'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.logo',
+					'l10n_mode' => 'mergeIfNotBlank',
 					'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('logo',
 							array(
 									'appearance' => array(
@@ -165,6 +168,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 				
 		'url' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.url',
 				'config' => array(
 						'type' => 'input',
@@ -174,6 +178,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'email' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.email',
 				'config' => array(
 						'type' => 'input',
@@ -183,6 +188,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'facebook' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.facebook',
 				'config' => array(
 						'type' => 'input',
@@ -192,6 +198,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'twitter' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.twitter',
 				'config' => array(
 						'type' => 'input',
@@ -201,6 +208,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'instagram' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.instagram',
 				'config' => array(
 						'type' => 'input',
@@ -210,6 +218,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'other' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.other',
 				'config' => array(
 						'type' => 'input',
@@ -219,6 +228,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'werk' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.werk',
 			'config' => array(
 				'type' => 'select',
@@ -234,6 +244,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'ausstellung' => array(
 				'exclude' => 0,
+				'l10n_mode' => 'mergeIfNotBlank',
 				'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_kuenstler.ausstellung',
 				'config' => array(
 						'type' => 'select',
