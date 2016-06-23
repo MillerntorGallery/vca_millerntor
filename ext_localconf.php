@@ -50,10 +50,19 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_ob
 	),
 	// non-cacheable actions
 	array(
-		'Kuenstler' => 'list,show,create, update, delete',
+		'Kuenstler' => 'create, update, delete',
 		'Werk' => 'create, update, delete',
 		
 	)
 );
+
+/**
+ * Hook to show PluginInfo
+ */
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['vcamillerntor_kuenstler'][$_EXTKEY] =
+'EXT:' . $_EXTKEY . '/Classes/Utility/Hook/PluginInfo.php:VCA\VcaMillerntor\Utility\Hook\PluginInfo->getInfo';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['vcamillerntor_werk'][$_EXTKEY] =
+'EXT:' . $_EXTKEY . '/Classes/Utility/Hook/PluginInfo.php:VCA\VcaMillerntor\Utility\Hook\PluginInfo->getInfo';
+
 
 ?>

@@ -1,54 +1,15 @@
+
 <div class="normName" style="display:none;">{kuenstler.normName}</div>
-<div class="flip_container vert" style="height:300px;">
-			<div class="flip_card shadow">
-				<div class="front face">
-					<f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
-						<f:image src="{kuenstler.logo.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
-					</f:link.action>
-				</div>
-				<div class="back face center ">
-					<div class="well">
-					    <h3 class="name"><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
-					    <div class="flip_content">
-						    <f:if condition="{kuenstler.url}">
-						    	<f:link.external  uri="{kuenstler.url}" target="_blank" class="linkExternal">
-	 								{kuenstler.url}
-								</f:link.external><br />
-							</f:if>
-						    <f:if condition="{kuenstler.email}">
-						    	<f:link.email  email="{kuenstler.email}" class="linkEmail">
-	 								{kuenstler.email}
-								</f:link.email><br />
-							</f:if>
-							<f:if condition="{kuenstler.facebook}">
-						    	<f:link.external  uri="{kuenstler.facebook}" target="_blank" class="linkExternal linkFb">
-	 								{kuenstler.facebook}
-								</f:link.external><br />
-							</f:if>
-							<f:if condition="{kuenstler.twitter}">
-						    	<f:link.external  uri="{kuenstler.twitter}" target="_blank" class="linkExternal linkTw">
-	 								{kuenstler.twitter}
-								</f:link.external><br />
-							</f:if>
-							<f:if condition="{kuenstler.instagram}">
-						    	<f:link.external  uri="{kuenstler.instagram}" target="_blank" class="linkExternal linkIg">
-	 								{kuenstler.instagram}
-								</f:link.external><br />
-							</f:if>
-							<f:if condition="{kuenstler.other}">
-						    	
-	 								<p><f:translate key="presented_by" /> {kuenstler.other}</p>
-								
-							</f:if>
-				            <div class="clearfix"></div>
-				            
-			            	<f:format.crop maxCharacters="100" append="&nbsp;..."><f:format.html>{kuenstler.decription}</f:format.html></f:format.crop>
-			            	<f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link"> 
-								mehr
-							</f:link.action>
-		            	</div>
-			    	</div>
-				</div>
-			</div>
-		</div>		
-		<h3><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+<div class="flip_container">
+			
+		<f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
+			<f:image src="{kuenstler.logo.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
+		</f:link.action>
+</div>
+<div class="carousel-caption flip-list">
+    <h3 class="name"><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
+           
+    
+</div>
+	
+		

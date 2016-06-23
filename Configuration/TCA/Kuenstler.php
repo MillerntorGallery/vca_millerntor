@@ -114,13 +114,15 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 				'eval' => 'trim',
 				'wizards' => array(
 					'RTE' => array(
-						'icon' => 'wizard_rte2.gif',
-						'notNewRecords'=> 1,
-						'RTEonly' => 1,
-						'script' => 'wizard_rte.php',
-						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
-						'type' => 'script'
-					)
+				        'notNewRecords' => 1,
+				        'RTEonly' => 1,
+				        'type' => 'script',
+				        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
+				        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
+				        'module' => array(
+				                'name' => 'wizard_rte'
+				        )
+					),
 				)
 			),
 			'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
@@ -144,22 +146,19 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 					'l10n_mode' => 'mergeIfNotBlank',
 					'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('logo',
 							array(
-									'appearance' => array(
-											'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+									'foreign_match_fields' => array (
+											'fieldname' => 'logo',
+											'tablenames' => 'tx_vcamillerntor_domain_model_kuenstler',
+											'table_local' => 'sys_file',
 									),
 									// custom configuration for displaying fields in the overlay/reference table
 									// to use the imageoverlayPalette instead of the basicoverlayPalette
 									'foreign_types' => array(
-											'0' => array(
-													'showitem' => '
-                                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                                --palette--;;filePalette'
-											),
 											\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
-													'showitem' => '
-                                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                                --palette--;;filePalette'
-											),
+													'showitem' => '--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette,
+                                  								--palette--;;imageoverlayPalette,
+                                  								--palette--;;filePalette'
+                							),
 									)
 							),
 							$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
@@ -260,5 +259,4 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 	),
 );
-
 ?>

@@ -12,16 +12,38 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<div class="well"><header class="page-header"><h1><f:translate key="contributors" /> A-Z</h1></header>
-	<div class="btn-group" id="filter">
+<header class="page-header"><h1><f:translate key="contributors" /> A-Z</h1></header>
+	<div class="btn-group well filters" id="filter" data-filter-group="chars">
 		<button data-filter="*" type="button" class="btn btn-default"><f:translate key="all" /></button>
 		<f:for each="{view_variables.alphabet}" as="index" key="char">
 	  		<button data-filter=".{char}-char" type="button" class="btn btn-default">{char}</button>
 			<!-- f:debug title="char">{char}</f:debug-->
 		</f:for>
 	</div>
-</div>
-
+	<f:if condition="{view_variables.years}">
+	<div class="btn-group well filters" id="filter-years" data-filter-group="years">
+		<button data-filter="*" type="button" class="btn btn-default"><f:translate key="all" /></button>
+		<f:for each="{view_variables.years}" as="year">
+	  		<button data-filter=".{year}-year" type="button" class="btn btn-default">{year}</button>
+			<!-- f:debug title="char">{char}</f:debug-->
+		</f:for>
+	</div>
+	</f:if>
+	<f:if condition="{view_variables.categories}">
+	<div class="btn-group well filters" id="filter-categories" data-filter-group="categories">
+		<button data-filter="*" type="button" class="btn btn-default"><f:translate key="all" /></button>
+		<f:for each="{view_variables.categories}" as="category" key="id">
+	  		<button data-filter=".{id}-category" type="button" class="btn btn-default">{category}</button>
+			<!-- f:debug title="char">{char}</f:debug-->
+		</f:for>
+	</div>
+	</f:if>
+	<f:if condition="{view_variables.ausstellung}">
+		<div class="label_black"><h3>{view_variables.ausstellung.title}</h3></div>
+	</f:if>
+	<f:if condition="{view_variables.category}">
+		<div class="label_black"><h3>{view_variables.category.title}</h3></div>
+	</f:if>
 <f:flashMessages />
 
 <div id="container">

@@ -47,7 +47,7 @@ $TCA['tx_vcamillerntor_domain_model_galerie'] = array(
 		),
 		'searchFields' => 'name,adresse,austellungen,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Galerie.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vcamillerntor_domain_model_galerie.gif'
+		'iconfile' => 'EXT:vca_millerntor/Resources/Public/Icons/tx_vcamillerntor_domain_model_galerie.gif'
 	),
 );
 
@@ -76,7 +76,7 @@ $TCA['tx_vcamillerntor_domain_model_ausstellung'] = array(
 		),
 		'searchFields' => 'title,description,start,end,werke,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Ausstellung.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vcamillerntor_domain_model_ausstellung.gif'
+		'iconfile' => 'EXT:vca_millerntor/Resources/Public/Icons/tx_vcamillerntor_domain_model_ausstellung.gif'
 	),
 );
 
@@ -105,7 +105,7 @@ $TCA['tx_vcamillerntor_domain_model_kuenstler'] = array(
 		),
 		'searchFields' => 'name,decription,logo,werk,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Kuenstler.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vcamillerntor_domain_model_kuenstler.gif'
+		'iconfile' => 'EXT:vca_millerntor/Resources/Public/Icons/tx_vcamillerntor_domain_model_kuenstler.gif'
 	),
 );
 
@@ -134,7 +134,7 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 		),
 		'searchFields' => 'title,description,media,artist,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Werk.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vcamillerntor_domain_model_werk.gif'
+		'iconfile' => 'EXT:vca_millerntor/Resources/Public/Icons/tx_vcamillerntor_domain_model_werk.gif'
 	),
 );
 
@@ -142,16 +142,37 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 //ext_tables.php
 $pluginSignature = 'vcamillerntor_kuenstler';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/KuenstlerControllerActions.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/KuenstlerControllerActions.xml');
 
 $pluginSignature = 'vcamillerntor_werke';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/WerkControllerActions.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY.'/Configuration/FlexForms/WerkControllerActions.xml');
 
 
 // add tables to "insert Record" content element
-t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_ausstellung');
-t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_kuenstler');
-t3lib_extMgm::addToInsertRecords('tx_vcamillerntor_domain_model_werk');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_vcamillerntor_domain_model_ausstellung');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_vcamillerntor_domain_model_kuenstler');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_vcamillerntor_domain_model_werk');
+
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
+		$_EXTKEY,
+		'tx_vcamillerntor_domain_model_kuenstler',
+		'categories',
+		array(
+				// Set a custom label
+				'label' => 'Categories',
+				// This field should not be an exclude-field
+				'exclude' => FALSE,
+				// Override generic configuration, e.g. sort by title rather than by sorting
+				'fieldConfiguration' => array(
+						'foreign_table_where' => ' AND sys_category.sys_language_uid IN (-1, 0) ORDER BY sys_category.title ASC',
+				),
+				// string (keyword), see TCA reference for details
+				'l10n_mode' => 'exclude',
+				// list of keywords, see TCA reference for details
+				'l10n_display' => 'hideDiff'
+		)
+);
 
 ?>

@@ -41,6 +41,20 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @inject
 	 */
 	protected $kuenstlerRepository;
+	/**
+	 * ausstellungRepository
+	 *
+	 * @var \VCA\VcaMillerntor\Domain\Repository\AusstellungRepository
+	 * @inject
+	 */
+	protected $ausstellungRepository;
+	/**
+	 * categoryRepository
+	 *
+	 * @var TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
+	 * @inject
+	 */
+	protected $categoryRepository;
 
 	/**
 	 * action list
@@ -48,12 +62,72 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function listAction() {
-		if(!isset($this->settings['showAusstellung'])) {
-			$kuenstlers = $this->kuenstlerRepository->findAll();
-		} else {
-			//only list artists from 2014
+		if(isset($this->settings['showAusstellung']) && intval($this->settings['showAusstellung']) > 0) {
+			//only list artists selected by ausstellung
 			$kuenstlers = $this->kuenstlerRepository->findAllByAusstellung($this->settings['showAusstellung']);
+			$view_variables['ausstellung'] = $this->ausstellungRepository->findOneByUid($this->settings['showAusstellung']);
+		} else {
+			$kuenstlers = $this->kuenstlerRepository->findAll();
+			/*
+			foreach ($kuenstlers as $index=>$kuenstler) {
+				$kuenstlers[$index]->years = $kuenstler->getAusstellungsYears();
+			}
+			*/
+			$view_variables['years'] = $this->setupYearsList($kuenstlers);
+			
+				
 		}
+		
+		if(isset($this->settings['showCategory']) && intval($this->settings['showCategory']) > 0 ) {
+			foreach($kuenstlers as $kuenstler) {
+				$cats = $kuenstler->getCategories();
+				foreach($cats as $cat) {
+					if($cat->getUid() == intval($this->settings['showCategory']) ) {
+						$cat_kuenstler[$kuenstler->getUid()] = $kuenstler;
+					}
+				}
+			}
+			$kuenstlers = $cat_kuenstler;
+			$view_variables['category'] = $this->categoryRepository->findOneByUid($this->settings['showCategory']);
+		} else {
+			$view_variables['categories'] = $this->setupCategoryList($kuenstlers);
+		}
+		
+		//print_r($chars);
+		
+		$view_variables['kuenstlers'] = $kuenstlers;
+		$view_variables['selected_categories'] = $this->settings['showCategory'];
+		$view_variables['alphabet'] = $this->setupAlphabetList($kuenstlers);
+		
+		$this->view->assign('view_variables', $view_variables);
+	}
+	
+	/**
+	 * TODO: find out availible years by kuenstler
+	 * @param unknown $kuenstlers
+	 * @return multitype:string
+	 */
+	public function setupYearsList($kuenstlers = array()) {
+		
+		
+		
+		return array('2013','2014','2015','2016');
+	}
+	/**
+	 * TODO: find out availible categories by kuenstler
+	 * @param unknown $kuenstlers
+	 * @return multitype:string
+	 */
+	public function setupCategoryList($kuenstlers = array()) {
+		/*
+			foreach ($kuenstlers as $index=>$kuenstler) {
+			$kuenstlers[$index]->years = $kuenstler->getAusstellungsYears();
+			}
+			*/
+		return array(1=>'Art',2=>'Music',3=>'Education',4=>'Cultur');
+	}
+	
+	public function setupAlphabetList(&$kuenstlers = array()) {
 		//setup alphabetical index
 		
 		$normalizeChars = array(
@@ -79,10 +153,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			//$char = iconv('UTF-8', 'ASCII//TRANSLIT', $char);
 			$chars[$char]++;
 		}
-		//print_r($chars);
-		$view_variables['kuenstlers'] = $kuenstlers;
-		$view_variables['alphabet'] = $chars;
-		$this->view->assign('view_variables', $view_variables);
+		return $chars;
 	}
 
 	/**

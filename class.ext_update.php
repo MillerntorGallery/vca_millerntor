@@ -58,7 +58,9 @@ class ext_update {
 	public function __construct() {
 		$this->configurationArray = array(
 			'ausstellungUid'=>'4',
-			'imagePath' => '/media/2015/artists_web/'	
+			'categoryUid'=>'1',
+			'imagePath' => '/media/2015/artists_web/',	
+			'csvPath' => '/artistmg5.csv'	
 		);
 		
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
@@ -78,6 +80,11 @@ class ext_update {
 			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
 			$this->processUpdates();
 			$content = '<b>Update durchgeführt</b>';
+		} else if (t3lib_div::_POST('insert_submit') != '') {
+			$this->configurationArray['csvPath'] = t3lib_div::_POST('csvPath');
+			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
+			$this->processInserts();
+			$content = '<b>Inserts durchgeführt</b>';
 		} else {
 			$content = $this->generateForm();
 		}
@@ -94,16 +101,28 @@ class ext_update {
 	protected function generateForm() {
 		return
 		'<form action="' . t3lib_div::getIndpEnv('REQUEST_URI') . '" method="POST">' .
+		'<h2>Update</h2>' .
 		'<p>This script will do the following:</p>' .
 		'<ul >' .
 		'<li>Search for images in folder: <input type="text" style="width:300px;" name="imagePath" value="'.$this->configurationArray['imagePath'].'" /></li>' .
 		'<li>Update Artists by Ausstellungs-ID: <input type="text" name="ausstellungUid" value="'.$this->configurationArray['ausstellungUid'].'" /></li>' .
-		'<li></li>' .
 		'</ul>' .
 		'<p><b>Warning!</b> Images will be added</p>' .
 		'<br />' .
-		'<br /><br />' .
-		'<input type="submit" name="update_submit" value="Update" /></form>';
+		'<input type="submit" name="update_submit" value="Update" />'.
+		'<br />' .
+		'<h2>Insert</h2>' .
+		'<p>This script will do the following:</p>' .
+		'<ul >' .
+		'<li>Search for csv file at: <input type="text" style="width:300px;" name="csvPath" value="'.$this->configurationArray['csvPath'].'" /></li>' .
+		'<li>Insert Artists by Ausstellungs-ID: <input type="text" name="ausstellungUid" value="'.$this->configurationArray['ausstellungUid'].'" /></li>' .
+		'<li>Insert Artists with Category-ID: <input type="text" name="categoryUid" value="'.$this->configurationArray['categoryUid'].'" /></li>' .
+		'</ul>' .
+		'<p><b>Warning!</b> Artists will be added</p>' .
+		'<br />' .
+		
+		'<input type="submit" name="insert_submit" value="Insert" />'.
+		'</form>';
 	}
 
 	/**
@@ -126,10 +145,183 @@ class ext_update {
 
 		$this->updateArtistImages();
 	}
+	
+	/**
+	 * The actual update function. Add your update task in here.
+	 *
+	 * @return void
+	 */
+	protected function processInserts() {
 
+		$this->insertArtists();
+	}
 
-
-
+	protected function insertArtists() {
+	
+		$artists = $this->getArtistsNames();
+		//$csvFile = $this->getCSVFile();
+		
+		$table = 'tx_vcamillerntor_domain_model_kuenstler';
+		
+		$row_count = 1;
+		if(file_exists(PATH_site.$this->configurationArray['csvPath'])) {
+		if (($handle = fopen(PATH_site.$this->configurationArray['csvPath'], "r")) !== FALSE) {
+			while (($data = fgetcsv($handle, 4000, ";", '"')) !== FALSE) {
+				$num = count($data);
+				
+				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $table, ' LOWER(name) LIKE ("'.strtolower($data[0]).'") AND sys_language_uid=0');
+				if(! $result )
+				{
+					//die('Could not enter data: ' . mysql_error());
+				} else {
+					if ($GLOBALS['TYPO3_DB']->sql_num_rows($result) == 0) {
+		
+						//INSERT
+						$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table, 
+								array(
+										'name' => $data[0], 
+										'decription' => $data[4],
+										'url' => $data[1],
+										'facebook' => $data[2],
+										'other' => $data[3],
+										'pid' => '4',
+										'tstamp' => 'TIMESTAMP(NOW())',
+										'crdate' => 'TIMESTAMP(NOW())' 
+								));
+						if(! $retval )
+						{
+							//die('Could not enter data: ' . mysql_error());
+						}
+						$uid = $GLOBALS['TYPO3_DB']->sql_insert_id();
+						//insert category relation
+						$retcat = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_category_record_mm',
+								array(
+										'uid_local' => $this->configurationArray['categoryUid'],
+										'uid_foreign' => $uid,
+										'tablenames' => $table,
+										'fieldname' => 'categories',
+										'sorting' => '0',
+										'sorting_foreign' => '0'
+								));
+						$this->messageArray[] = array(FlashMessage::OK, 'Insert: '.$uid, $data[0]);
+		
+					} else {
+						//UPDATE
+						while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
+							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], 
+									array(
+											'decription' => $data[4], 
+											'url' => $data[1],
+											'facebook' => $data[2],
+											'other' => $data[3]
+							
+									));
+							if(! $retval )
+							{
+								//die('Could not enter data: ' . mysql_error());
+							}
+		
+							
+							$uid = $row['uid'];
+							$this->messageArray[] = array(FlashMessage::OK, 'Update: '.$uid, $row['name']);
+		
+						}
+					}
+		
+					//create translation
+					//search translation
+					$result_trans = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $table, ' LOWER(name) LIKE ("'.strtolower($data[0]).'") AND sys_language_uid=1');
+					if(! $result_trans )
+					{
+						//die('Could not find translation data: ' . mysql_error());
+					} else {
+						if ($GLOBALS['TYPO3_DB']->sql_num_rows($result_trans) == 0) {
+		
+							//INSERT new translation
+							$retval_trans = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table,
+									array(
+											'name' => $data[0],
+											'decription' => $data[5],
+											'sys_language_uid' => '1',
+											'pid' => '4',
+											'l10n_parent' => $uid,
+											'tstamp' => 'TIMESTAMP(NOW())',
+											'crdate' => 'TIMESTAMP(NOW())'
+									));
+							if(! $retval_trans )
+							{
+								//die('Could not enter data: ' . mysql_error());
+							}
+							$uid_trans = $GLOBALS['TYPO3_DB']->sql_insert_id();
+		
+								
+								
+						} else {
+							//UPDATE translation
+							while ($row_trans = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result_trans)) {
+								$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row_trans['uid'],
+										array(
+												'decription' => $data[5]
+										));
+								if(! $retval_trans )
+								{
+									//die('Could not enter data: ' . mysql_error());
+								}
+								$uid_trans = $row_trans['uid'];
+							}
+						}
+					}
+						
+				}
+				 
+				//SET Gallery 
+				//
+				// Already set?
+				$res_gal = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_vcamillerntor_ausstellung_kuenstler_mm', ' uid_local='.$this->configurationArray['ausstellungUid'].' AND uid_foreign='.$uid);
+				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_gal) == 0) {
+					$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_vcamillerntor_ausstellung_kuenstler_mm',
+							array(
+									'uid_local' => $this->configurationArray['ausstellungUid'],
+									'uid_foreign' => $uid
+							));
+				}
+				$row_count++;
+			}
+			fclose($handle);
+		} else {
+			$this->messageArray[] = array(FlashMessage::WARNING, 'fopen', 'not found: '.$this->configurationArray['csvPath']);
+		}
+		} else {
+			$this->messageArray[] = array(FlashMessage::WARNING, 'file_exists', 'not found: '.$this->configurationArray['csvPath']);
+		}
+		
+		
+		$this->messageArray[] = array(FlashMessage::WARNING, 'Finished', 'Records verarbeitet: '.$row_count);
+		
+	}
+	
+	/**
+	 * Get csv data
+	 *
+	 * @return \TYPO3\CMS\Core\Resource\Folder|void
+	 * @throws \Exception
+	 */
+	protected function getCSVFile() {
+		if ($this->artistCSVObject === NULL) {
+	
+			$storage = $this->resourceFactory->getDefaultStorage();
+			if (!$storage) {
+				throw new \Exception('No default storage set!');
+			}
+			try {
+				$this->artistCSVObject = $storage->retrieveFileOrFolderObject($this->configurationArray['csvPath']);
+				
+			} catch (\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
+				//$this->artistImageFolder = $storage->createFolder($this->configurationArray['imagePath']);
+			}
+		}
+		return $this->artistCSVObject;
+	}
 
 	/**
 	 * Migrate news_category.image (CSV) to sys_category.images (sys_file_reference)

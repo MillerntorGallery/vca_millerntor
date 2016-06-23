@@ -125,25 +125,29 @@ $TCA['tx_vcamillerntor_domain_model_galerie'] = array(
 				'wizards' => array(
 					'_PADDING' => 1,
 					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+						'edit' => array(
+								'type' => 'popup',
+								'title' => 'Edit',
+								'module' => array(
+										'name' => 'wizard_edit',
+								),
+								'popup_onlyOpenIfSelected' => 1,
+								'icon' => 'actions-open',
+								'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1'
 						),
-					'add' => Array(
-						'type' => 'script',
-						'title' => 'Create new',
-						'icon' => 'add.gif',
-						'params' => array(
-							'table' => 'tx_vcamillerntor_domain_model_ausstellung',
-							'pid' => '###CURRENT_PID###',
-							'setValue' => 'prepend'
-							),
-						'script' => 'wizard_add.php',
-					),
+						'add' => array(
+								'type' => 'script',
+								'title' => 'Create new',
+								'icon' => 'actions-add',
+								'params' => array(
+										'table' => 'tx_vcamillerntor_domain_model_ausstellung',
+										'pid' => '###CURRENT_PID###',
+										'setValue' => 'prepend'
+								),
+								'module' => array(
+										'name' => 'wizard_add'
+								)
+						),
 				),
 			),
 		),

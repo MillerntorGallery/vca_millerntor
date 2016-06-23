@@ -103,7 +103,9 @@
 			<trans-unit id="tx_vcamillerntor_domain_model_werk.buyUrl">
 				<source>Shop-URL des Werkes</source>
 			</trans-unit>
-
+			<trans-unit id="flexforms_general.mode.kuenstler_insertrecord">
+				<source>Künstler-Teaser</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

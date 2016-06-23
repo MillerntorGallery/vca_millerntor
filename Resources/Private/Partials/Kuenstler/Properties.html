@@ -1,18 +1,19 @@
 <div class="row">
-	<div class="col-xs-12 col-md-3 artists-logo">
+	
+	<div class="col-md-8"><h1>{kuenstler.name}</h1></div>
+	<div class="col-md-2 pull-right"><h3><f:link.action pageUid="5" class="pull-right">< <f:translate key="overview" /></f:link.action></h3></div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-6 artists-logo">
 		
 				<a href="{f:uri.image(src:kuenstler.logo.uid,treatIdAsReference:1)}" class="lightbox" rel="gallery">
 					<f:image src="{kuenstler.logo.uid}" width="600px" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
 				</a>
 		
 	</div>
-	<div class="col-xs-12 col-md-9">
-		<h2>{kuenstler.name}</h2>
-		<f:if condition="{kuenstler.url}">
-	    	<f:link.external  uri="{kuenstler.url}" target="_blank" class="linkExternal">
-					{kuenstler.url}
-			</f:link.external><br />
-		</f:if>
+	<div class="col-xs-12 col-md-6">
+		
+		
 	    <f:if condition="{kuenstler.email}">
 	    	<f:link.email  email="{kuenstler.email}" class="linkEmail">
 					{kuenstler.email}
@@ -41,6 +42,12 @@
            <div class="clearfix"></div>
 				            
 		<f:format.html>{kuenstler.decription}</f:format.html>
+		
+		<f:if condition="{kuenstler.url}">
+	    	<h3><f:link.external  uri="{kuenstler.url}" target="_blank" class="linkExternal">
+					{kuenstler.url}
+			</f:link.external></h3>
+		</f:if>
 		
 		<ul class="work-artists">
         	<f:for each="{kuenstler.ausstellung}" as="ausstellung">

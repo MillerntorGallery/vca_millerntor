@@ -105,7 +105,8 @@ CREATE TABLE tx_vcamillerntor_domain_model_kuenstler (
 	
 	logo int(11) DEFAULT '0' NOT NULL,
 	werk int(11) DEFAULT '0' NOT NULL,
-	ausstellung int(11) DEFAULT '0' NOT NULL,	
+	ausstellung int(11) DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

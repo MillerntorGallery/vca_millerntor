@@ -14,6 +14,7 @@ plugin.tx_vcamillerntor {
 	}
 	settings {
 		showAusstellung = {$plugin.tx_vcamillerntor.ausstellung.showOnly}
+		storagePid = {$plugin.tx_vcamillerntor.persistence.storagePid}
 	}
 }
 

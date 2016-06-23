@@ -112,12 +112,14 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 				'eval' => 'trim',
 				'wizards' => array(
 					'RTE' => array(
-						'icon' => 'wizard_rte2.gif',
-						'notNewRecords'=> 1,
-						'RTEonly' => 1,
-						'script' => 'wizard_rte.php',
-						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
-						'type' => 'script'
+				        'notNewRecords' => 1,
+				        'RTEonly' => 1,
+				        'type' => 'script',
+				        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
+				        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
+				        'module' => array(
+				                'name' => 'wizard_rte'
+				        )
 					)
 				)
 			),
@@ -176,25 +178,29 @@ $TCA['tx_vcamillerntor_domain_model_werk'] = array(
 				'wizards' => array(
 					'_PADDING' => 1,
 					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+						'edit' => array(
+								'type' => 'popup',
+								'title' => 'Edit',
+								'module' => array(
+										'name' => 'wizard_edit',
+								),
+								'popup_onlyOpenIfSelected' => 1,
+								'icon' => 'actions-open',
+								'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1'
 						),
-					'add' => Array(
-						'type' => 'script',
-						'title' => 'Create new',
-						'icon' => 'add.gif',
-						'params' => array(
-							'table' => 'tx_vcamillerntor_domain_model_kuenstler',
-							'pid' => '###CURRENT_PID###',
-							'setValue' => 'prepend'
-							),
-						'script' => 'wizard_add.php',
-					),
+						'add' => array(
+								'type' => 'script',
+								'title' => 'Create new',
+								'icon' => 'actions-add',
+								'params' => array(
+										'table' => 'tx_vcamillerntor_domain_model_kuenstler',
+										'pid' => '###CURRENT_PID###',
+										'setValue' => 'prepend'
+								),
+								'module' => array(
+										'name' => 'wizard_add'
+								)
+						),
 				),
 			),
 		),

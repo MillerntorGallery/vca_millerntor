@@ -84,6 +84,7 @@ tt_content.shortcut.20.1.conf.tx_vcamillerntor_domain_model_werk {
 	10.value = cccc
 }
 
+tt_content.shortcut.20.0.conf.tx_vcamillerntor_domain_model_kuenstler <.lib.foo
 
 /*
 tx_vcamillerntor_domain_model_werk >

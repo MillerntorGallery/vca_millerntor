@@ -1,4 +1,12 @@
 {namespace v=Tx_Vhs_ViewHelpers}
-<div class="item {v:format.substring(content: kuenstler.normName, start: '0', length: '1')}-char"> 
+<div class="item 
+{v:format.substring(content: kuenstler.normName, start: '0', length: '1')}-char 
+<f:for each="{kuenstler.years}" as="year" >
+ {year}-year
+ </f:for>
+<f:for each="{kuenstler.categories}" as="category">
+ {category.uid}-category
+ </f:for> 
+ "> 
 	<f:render partial="Kuenstler/Flip" arguments="{kuenstler:kuenstler}" />		
 </div>
