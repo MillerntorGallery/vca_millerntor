@@ -350,7 +350,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		foreach ($this->logo as $image) {
 			$imageFiles[] = $image->getOriginalResource()->toArray();
 		}
-		return $imageFiles[0];
+		!empty($imageFiles[0]) ? $imageFiles[0] : 'typo3conf/ext/theme_millerntor/Resources/Public/Images/back_millerntor_gallery.png';
 	}
 
 	/**

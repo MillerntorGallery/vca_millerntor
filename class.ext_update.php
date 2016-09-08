@@ -57,7 +57,7 @@ class ext_update {
 	 */
 	public function __construct() {
 		$this->configurationArray = array(
-			'ausstellungUid'=>'4',
+			'ausstellungUid'=>'5',
 			'categoryUid'=>'1',
 			'imagePath' => '/media/2015/artists_web/',	
 			'csvPath' => '/artistmg5.csv'	
@@ -78,11 +78,14 @@ class ext_update {
 		if (t3lib_div::_POST('update_submit') != '') {
 			$this->configurationArray['imagePath'] = t3lib_div::_POST('imagePath');
 			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
+			$this->configurationArray['categoryUid'] = t3lib_div::_POST('categoryUid');
+			
 			$this->processUpdates();
 			$content = '<b>Update durchgeführt</b>';
 		} else if (t3lib_div::_POST('insert_submit') != '') {
 			$this->configurationArray['csvPath'] = t3lib_div::_POST('csvPath');
 			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
+			$this->configurationArray['categoryUid'] = t3lib_div::_POST('categoryUid');
 			$this->processInserts();
 			$content = '<b>Inserts durchgeführt</b>';
 		} else {
@@ -175,8 +178,27 @@ class ext_update {
 					//die('Could not enter data: ' . mysql_error());
 				} else {
 					if ($GLOBALS['TYPO3_DB']->sql_num_rows($result) == 0) {
-		
+						if(empty($data[4])) {
+							$data[4] = '';
+						}
+						if(empty($data[3])) {$data[3] = '';}
+						if(empty($data[2])) {$data[2] = '';}
+						if(empty($data[1])) {$data[1] = '';}
 						//INSERT
+						/*
+						$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
+								array(
+										'name' => $data[0],
+										'decription' => $data[4],
+										'url' => $data[1],
+										'facebook' => $data[2],
+										'other' => $data[3],
+										'pid' => '4',
+										'tstamp' => 'TIMESTAMP(NOW())',
+										'crdate' => 'TIMESTAMP(NOW())'
+								));
+						$this->messageArray[] = array(FlashMessage::OK, 'SQL: ', $retsql);
+						*/
 						$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table, 
 								array(
 										'name' => $data[0], 
@@ -208,6 +230,13 @@ class ext_update {
 					} else {
 						//UPDATE
 						while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
+							if(empty($data[4])) {
+								$data[4] = '';
+							}
+							if(empty($data[3])) {$data[3] = '';}
+							if(empty($data[2])) {$data[2] = '';}
+							if(empty($data[1])) {$data[1] = '';}
+								
 							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], 
 									array(
 											'decription' => $data[4], 
@@ -236,8 +265,22 @@ class ext_update {
 						//die('Could not find translation data: ' . mysql_error());
 					} else {
 						if ($GLOBALS['TYPO3_DB']->sql_num_rows($result_trans) == 0) {
-		
+							if(empty($data[5])) {
+								$data[5] = '';
+							}
 							//INSERT new translation
+							$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
+									array(
+											'name' => $data[0],
+											'decription' => $data[5],
+											'sys_language_uid' => '1',
+											'pid' => '4',
+											'l10n_parent' => $uid,
+											'tstamp' => 'TIMESTAMP(NOW())',
+											'crdate' => 'TIMESTAMP(NOW())'
+									));
+							$this->messageArray[] = array(FlashMessage::OK, 'SQL: ', $retsql);
+								
 							$retval_trans = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table,
 									array(
 											'name' => $data[0],
@@ -454,6 +497,8 @@ class ext_update {
 	protected function getArtistsNames() {
 		$artists = array();
 		$artistsQuery = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,name', 'tx_vcamillerntor_domain_model_kuenstler LEFT JOIN tx_vcamillerntor_ausstellung_kuenstler_mm as mm ON tx_vcamillerntor_domain_model_kuenstler.uid=mm.uid_foreign', 'tx_vcamillerntor_domain_model_kuenstler.deleted=0 AND tx_vcamillerntor_domain_model_kuenstler.sys_language_uid=0 AND mm.uid_local='.$this->configurationArray['ausstellungUid']);
+		$artistsQuerySQL = $GLOBALS['TYPO3_DB']->SELECTquery('uid,name', 'tx_vcamillerntor_domain_model_kuenstler LEFT JOIN tx_vcamillerntor_ausstellung_kuenstler_mm as mm ON tx_vcamillerntor_domain_model_kuenstler.uid=mm.uid_foreign', 'tx_vcamillerntor_domain_model_kuenstler.deleted=0 AND tx_vcamillerntor_domain_model_kuenstler.sys_language_uid=0 AND mm.uid_local='.$this->configurationArray['ausstellungUid']);
+		$this->messageArray[] = array(FlashMessage::OK, 'SQL: ', $artistsQuerySQL);
 		while ($artistRow = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($artistsQuery)) {
 			$artists[$artistRow['uid']] = array('uid'=>$artistRow['uid'],'name'=>$artistRow['name'],'noblank'=>str_replace(array(' ','&','.','-'),array('','','',''),strtolower($artistRow['name'])));
 			/*			
