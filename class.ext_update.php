@@ -184,8 +184,11 @@ class ext_update {
 						if(empty($data[3])) {$data[3] = '';}
 						if(empty($data[2])) {$data[2] = '';}
 						if(empty($data[1])) {$data[1] = '';}
+						if(empty($data[5])) {$data[5] = '';}
+						if(empty($data[6])) {$data[6] = '';}
+						if(empty($data[7])) {$data[7] = '';}
 						//INSERT
-						/*
+						
 						$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
 								array(
 										'name' => $data[0],
@@ -197,15 +200,19 @@ class ext_update {
 										'tstamp' => 'TIMESTAMP(NOW())',
 										'crdate' => 'TIMESTAMP(NOW())'
 								));
-						$this->messageArray[] = array(FlashMessage::OK, 'SQL: ', $retsql);
-						*/
+						$this->messageArray[] = array(FlashMessage::OK, 'Insert SQL: ', $retsql);
+						/*
 						$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table, 
 								array(
 										'name' => $data[0], 
-										'decription' => $data[4],
+										'decription' => $data[7],
 										'url' => $data[1],
 										'facebook' => $data[2],
 										'other' => $data[3],
+										'instagram' => $data[3],
+										'twitter' => $data[4],
+										'other' => $data[5],
+										'email' => $data[6],
 										'pid' => '4',
 										'tstamp' => 'TIMESTAMP(NOW())',
 										'crdate' => 'TIMESTAMP(NOW())' 
@@ -226,7 +233,9 @@ class ext_update {
 										'sorting_foreign' => '0'
 								));
 						$this->messageArray[] = array(FlashMessage::OK, 'Insert: '.$uid, $data[0]);
-		
+						*/
+						$uid='xx';
+						$this->messageArray[] = array(FlashMessage::OK, 'Insert: '.$uid, $data[0]);
 					} else {
 						//UPDATE
 						while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
@@ -236,13 +245,34 @@ class ext_update {
 							if(empty($data[3])) {$data[3] = '';}
 							if(empty($data[2])) {$data[2] = '';}
 							if(empty($data[1])) {$data[1] = '';}
-								
-							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], 
+							if(empty($data[5])) {$data[5] = '';}
+							if(empty($data[6])) {$data[6] = '';}
+							if(empty($data[7])) {$data[7] = '';}
+
+							$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row['uid'], 
 									array(
-											'decription' => $data[4], 
+											'decription' => $data[7],
 											'url' => $data[1],
 											'facebook' => $data[2],
-											'other' => $data[3]
+											'other' => $data[3],
+											'instagram' => $data[3],
+											'twitter' => $data[4],
+											'other' => $data[5],
+											'email' => $data[6]
+							
+									));
+							$this->messageArray[] = array(FlashMessage::OK, 'Update SQL: ', $retsql);	
+							/*
+							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], 
+									array(
+											'decription' => $data[7],
+											'url' => $data[1],
+											'facebook' => $data[2],
+											'other' => $data[3],
+											'instagram' => $data[3],
+											'twitter' => $data[4],
+											'other' => $data[5],
+											'email' => $data[6]
 							
 									));
 							if(! $retval )
@@ -250,10 +280,10 @@ class ext_update {
 								//die('Could not enter data: ' . mysql_error());
 							}
 		
-							
+							*/
 							$uid = $row['uid'];
 							$this->messageArray[] = array(FlashMessage::OK, 'Update: '.$uid, $row['name']);
-		
+							
 						}
 					}
 		
@@ -265,26 +295,26 @@ class ext_update {
 						//die('Could not find translation data: ' . mysql_error());
 					} else {
 						if ($GLOBALS['TYPO3_DB']->sql_num_rows($result_trans) == 0) {
-							if(empty($data[5])) {
-								$data[5] = '';
+							if(empty($data[8])) {
+								$data[8] = '';
 							}
 							//INSERT new translation
 							$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
 									array(
 											'name' => $data[0],
-											'decription' => $data[5],
+											'decription' => $data[8],
 											'sys_language_uid' => '1',
 											'pid' => '4',
 											'l10n_parent' => $uid,
 											'tstamp' => 'TIMESTAMP(NOW())',
 											'crdate' => 'TIMESTAMP(NOW())'
 									));
-							$this->messageArray[] = array(FlashMessage::OK, 'SQL: ', $retsql);
-								
+							$this->messageArray[] = array(FlashMessage::OK, 'Translate insert SQL: ', $retsql);
+							/*	
 							$retval_trans = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table,
 									array(
 											'name' => $data[0],
-											'decription' => $data[5],
+											'decription' => $data[8],
 											'sys_language_uid' => '1',
 											'pid' => '4',
 											'l10n_parent' => $uid,
@@ -296,21 +326,28 @@ class ext_update {
 								//die('Could not enter data: ' . mysql_error());
 							}
 							$uid_trans = $GLOBALS['TYPO3_DB']->sql_insert_id();
-		
+							*/
 								
 								
 						} else {
 							//UPDATE translation
 							while ($row_trans = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result_trans)) {
+								$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row_trans['uid'],
+										array(
+												'decription' => $data[8]
+										));
+								$this->messageArray[] = array(FlashMessage::OK, 'Update SQL: ', $retsql);	
+								/*
 								$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row_trans['uid'],
 										array(
-												'decription' => $data[5]
+												'decription' => $data[8]
 										));
 								if(! $retval_trans )
 								{
 									//die('Could not enter data: ' . mysql_error());
 								}
 								$uid_trans = $row_trans['uid'];
+								*/
 							}
 						}
 					}
@@ -320,6 +357,7 @@ class ext_update {
 				//SET Gallery 
 				//
 				// Already set?
+				/*
 				$res_gal = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_vcamillerntor_ausstellung_kuenstler_mm', ' uid_local='.$this->configurationArray['ausstellungUid'].' AND uid_foreign='.$uid);
 				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_gal) == 0) {
 					$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_vcamillerntor_ausstellung_kuenstler_mm',
@@ -328,6 +366,7 @@ class ext_update {
 									'uid_foreign' => $uid
 							));
 				}
+				*/
 				$row_count++;
 			}
 			fclose($handle);
