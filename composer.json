@@ -16,5 +16,6 @@
 	},
 	"require": {
 		"typo3/cms": "^7.6",
+		"typo3-ter/vhs": "^3.1"
 	}
 }
