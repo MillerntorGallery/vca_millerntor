@@ -20,6 +20,7 @@ $TCA['tx_vcamillerntor_domain_model_galerie'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -34,6 +35,7 @@ $TCA['tx_vcamillerntor_domain_model_galerie'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -116,6 +118,7 @@ $TCA['tx_vcamillerntor_domain_model_galerie'] = array(
 			'label' => 'LLL:EXT:vca_millerntor/Resources/Private/Language/locallang_db.xlf:tx_vcamillerntor_domain_model_galerie.austellungen',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
 				'foreign_table' => 'tx_vcamillerntor_domain_model_ausstellung',
 				'MM' => 'tx_vcamillerntor_galerie_ausstellung_mm',
 				'size' => 10,
