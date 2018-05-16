@@ -61,6 +61,7 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * logo
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 * @cascade remove
 	 */
 	protected $logo;
 
@@ -344,13 +345,16 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $logo
 	 */
 	public function getLogo() {
-		//return $this->logo;
-		$imageFiles = array();
+		return $this->logo;
+		
+		//$imageFiles = array();
 		/** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo */
+		/*
 		foreach ($this->logo as $image) {
 			$imageFiles[] = $image->getOriginalResource()->toArray();
 		}
 		!empty($imageFiles[0]) ? $imageFiles[0] : 'typo3conf/ext/theme_millerntor/Resources/Public/Images/back_millerntor_gallery.png';
+		*/
 	}
 
 	/**
