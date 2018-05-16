@@ -109,9 +109,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	public function setupYearsList($kuenstlers = array()) {
 		
-		
-		
-		return array('2013','2014','2015','2016');
+		return array('2013','2014','2015','2016','2017','2018');
 	}
 	/**
 	 * TODO: find out availible categories by kuenstler
