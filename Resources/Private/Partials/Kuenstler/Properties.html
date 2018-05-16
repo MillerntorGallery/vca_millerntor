@@ -52,7 +52,7 @@
 		<ul class="work-artists">
         	<f:for each="{kuenstler.ausstellung}" as="ausstellung">
         	<li>
-        		<f:link.action action="show" pageUid="2" pluginName="ausstellungen" controller="Ausstellung" arguments="{ausstellung : ausstellung}"> {ausstellung.title}</f:link.action>
+        		<f:link.action action="show" pageUid="{settings.exibitionPid}" pluginName="ausstellungen" controller="Ausstellung" arguments="{ausstellung : ausstellung}"> {ausstellung.title}</f:link.action>
         	</li>
         	</f:for>
         </ul>	

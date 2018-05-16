@@ -2,9 +2,9 @@
 <div class="normName" style="display:none;">{kuenstler.normName}</div>
 <div class="flip_container">
 			
-		<f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
-			<f:image src="{kuenstler.logo.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
-		</f:link.action>
+			<f:link.action action="show" pageUid="{settings.detailPid}" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
+				<f:image src="{image.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
+			</f:link.action>
 </div>
 <div class="carousel-caption flip-list">
     <h3 class="name"><f:link.action action="show" pageUid="7" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
