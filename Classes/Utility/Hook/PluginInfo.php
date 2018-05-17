@@ -107,7 +107,7 @@ class PluginInfo {
 				$actionTranslation = $actionTranslationKey;
 			}
 
-			$result .= '<pre>' . $actionTranslation . '</pre>';
+			//$result .= '<pre>' . $actionTranslation . '</pre>';
 		} else {
 		}
 
@@ -140,9 +140,9 @@ class PluginInfo {
 				$kuenstler = $this->kuenstlerRepository->findOneByUid($setting);
 				//$kuenstlers = $this->kuenstlerRepository->findAll();
 				//print_r($kuenstlers);
-				if( $kuenstler instanceof VCA\VcaMillerntor\Domain\Model\Kuenstler ) {
+				if(true || $kuenstler instanceof VCA\VcaMillerntor\Domain\Model\Kuenstler ) {
 					$this->tableData[] = array(
-							'Kuenstler: ',
+							'Kuenstler',
 							$kuenstler->getName()
 					);
 				}

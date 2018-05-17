@@ -48,10 +48,10 @@ class KuenstlerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$category_uid = 1;
 		if($GLOBALS['TSFE']->sys_language_uid != 0){
   			$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-  			$query->getQuerySettings()->setSysLanguageUid($GLOBALS['TSFE']->sys_language_uid);
+  			//$query->getQuerySettings()->setSysLanguageUid($GLOBALS['TSFE']->sys_language_uid);
   		}	
 		if(intval($ausstellung_uid) > 0 ) {
-  			$query->matching($query->equals('ausstellung.uid', $ausstellung_uid));
+  			$query->matching($query->in('ausstellung.uid', array($ausstellung_uid)));
 		}
 		/*
 		if(intval($category_uid) > 0 ) {

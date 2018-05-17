@@ -58,8 +58,8 @@ $.Isotope.prototype._masonryGetContainerSize = function() {
 };
 jQuery(document).ready(function() {
 	
-	$("iframe").wrap('<div class="embed-responsive embed-responsive-16by9"/>');
-	$("iframe").addClass('embed-responsive-item');
+	//$("iframe").wrap('<div class="embed-responsive embed-responsive-16by9"/>');
+	//$("iframe").addClass('embed-responsive-item');
  
   var $container = jQuery('#container');
   var iso_page = $container.is('ul');

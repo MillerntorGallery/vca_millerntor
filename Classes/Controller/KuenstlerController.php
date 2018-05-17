@@ -122,7 +122,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			$kuenstlers[$index]->years = $kuenstler->getAusstellungsYears();
 			}
 			*/
-		return array(1=>'Art',2=>'Music',3=>'Education',4=>'Cultur');
+		return array(1=>'Art',2=>'Music',3=>'Culture'); //,4=>'Culture'
 	}
 	
 	public function setupAlphabetList(&$kuenstlers = array()) {
@@ -181,6 +181,8 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	public function showAction(\VCA\VcaMillerntor\Domain\Model\Kuenstler $kuenstler) {
 		$GLOBALS['TSFE']->page['title'] = $kuenstler->getName();
 		$GLOBALS['TSFE']->indexedDocTitle = $kuenstler->getName();
+
+		
 		
 		$this->view->assign('kuenstler', $kuenstler);
 	}
@@ -193,7 +195,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		if(isset($this->settings['displayItem'])) {
 		
 			$uid = $this->settings['displayItem'];
-			$this->view->assign('kuenstler', $this->kuenstlerRepository->findOneByUid($uid));
+			$this->view->assign('kuenstler', $this->kuenstlerRepository->findByUid($uid));
 		} else {
 			//TODO: stop displaying view
 		}

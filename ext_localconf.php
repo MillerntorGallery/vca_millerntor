@@ -64,5 +64,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['vcamillerntor_werk'][$_EXTKEY] =
 'EXT:' . $_EXTKEY . '/Classes/Utility/Hook/PluginInfo.php:VCA\VcaMillerntor\Utility\Hook\PluginInfo->getInfo';
 
+/*
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser'] = array(
+    'className' => 'DmitryDulepov\\Sample\\Xclass\\Typo3DbQueryParser',
+);
+*/
 
 ?>
