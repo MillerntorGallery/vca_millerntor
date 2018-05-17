@@ -1,3 +1,5 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
 <div class="row">
 	
 	<div class="col-md-8"><h1>{kuenstler.name}</h1></div>
@@ -6,12 +8,18 @@
 <div class="row">
 	<div class="col-xs-12 col-md-6 artists-logo">
 		
-		<f:for each="{kuenstler.logo}" as="image">
-			<a href="{f:uri.image(src:image.uid,treatIdAsReference:1)}" class="lightbox" rel="gallery">
-				<f:image src="{image.uid}" width="600px" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
-			</a>
-		</f:for>
-		
+		<f:if condition="{kuenstler.logo -> f:count()}">
+			<f:then>
+				<f:for each="{kuenstler.logo}" as="image">
+					<a href="{f:uri.image(src:image.uid,treatIdAsReference:1)}" class="lightbox" rel="gallery">
+						<f:image src="{image.uid}" width="600px" alt="{kuenstler.name}"  treatIdAsReference="1" class="img-responsive well" />
+					</a>
+				</f:for>
+			</f:then>
+			<f:else>
+	        	<f:image src="{settings.defaultImage}" width="600px" alt="{kuenstler.name}"   class="img-responsive {v:iterator.random(subject: settings.randomClasses)}" />
+	    	</f:else>
+		</f:if>
 	</div>
 	<div class="col-xs-12 col-md-6">
 		

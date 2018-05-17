@@ -15,4 +15,8 @@ plugin.tx_vcamillerntor {
 		# cat=plugin.tx_vcamillerntor//a; type=string; label=Show only artists by this Ausstellungs Uid
 		showOnly = 4
 	}	
+	settings {
+		# cat=plugin.tx_vcamillerntor//a; type=string; label=Default image
+		defaultImage = /fileadmin/media/2017/MTG7_Skull_transparent_klein.png
+	}	
 }

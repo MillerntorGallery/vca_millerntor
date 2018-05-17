@@ -1,14 +1,22 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 
 <div class="normName" style="display:none;">{kuenstler.normName}</div>
 <div class="flip_container">
-			
-	<f:for each="{kuenstler.logo}" as="image" iteration="iterator">		
-		<f:if condition="{iterator.isFirst}">
-			<f:link.action action="show" pageUid="{settings.detailPid}" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">
-				<f:image src="{image.uid}" alt="{kuenstler.name}" width="200" treatIdAsReference="1" /> 
-			</f:link.action>
-		</f:if>
-	</f:for>	
+	<f:if condition="{kuenstler.logo -> f:count()}">
+		<f:then>	
+			<f:for each="{kuenstler.logo}" as="image" iteration="iterator">		
+				<f:if condition="{iterator.isFirst}">
+					<f:link.action action="show" pageUid="{settings.detailPid}" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">	
+						<f:image src="{image.uid}" treatIdAsReference="1" alt="{kuenstler.name}" width="200" /> 
+					</f:link.action>
+				</f:if>
+			</f:for>	
+		</f:then>
+		<f:else>
+
+        	<f:image src="{settings.defaultImage}" width="600px" alt="{kuenstler.name}"   class="img-responsive {v:iterator.random(subject: settings.randomClasses)}" />
+    	</f:else>
+	</f:if>
 </div>
 <div class="carousel-caption flip-list">
     <h3 class="name"><f:link.action action="show" pageUid="{settings.detailPid}" controller="Kuenstler" arguments="{kuenstler : kuenstler}"> {kuenstler.name}</f:link.action></h3>
