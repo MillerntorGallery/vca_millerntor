@@ -102,6 +102,7 @@ CREATE TABLE tx_vcamillerntor_domain_model_kuenstler (
 	twitter text DEFAULT '' NOT NULL,
 	instagram text DEFAULT '' NOT NULL,
 	other text DEFAULT '' NOT NULL,
+	video text DEFAULT '' NOT NULL,
 	
 	logo int(11) DEFAULT '0' NOT NULL,
 	werk int(11) DEFAULT '0' NOT NULL,
