@@ -57,10 +57,11 @@ class ext_update {
 	 */
 	public function __construct() {
 		$this->configurationArray = array(
-			'ausstellungUid'=>'7',
+			'ausstellungUid'=>'6',
 			'categoryUid'=>'1',
 			'imagePath' => '/media/2017/artists/art/',	
-			'csvPath' => '/artists_art_mg7.csv'	
+			'csvPath' => '/fileadmin/media/2018/data',
+			'storagePid' => 4	
 		);
 		
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
@@ -75,17 +76,17 @@ class ext_update {
 	 * @return string
 	 */
 	public function main() {
-		if (t3lib_div::_POST('update_submit') != '') {
-			$this->configurationArray['imagePath'] = t3lib_div::_POST('imagePath');
-			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
-			$this->configurationArray['categoryUid'] = t3lib_div::_POST('categoryUid');
+		if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('update_submit') != '') {
+			$this->configurationArray['imagePath'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('imagePath');
+			$this->configurationArray['ausstellungUid'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('ausstellungUid');
+			$this->configurationArray['categoryUid'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('categoryUid');
 			
 			$this->processUpdates();
 			$content = '<b>Update durchgeführt</b>';
-		} else if (t3lib_div::_POST('insert_submit') != '') {
-			$this->configurationArray['csvPath'] = t3lib_div::_POST('csvPath');
-			$this->configurationArray['ausstellungUid'] = t3lib_div::_POST('ausstellungUid');
-			$this->configurationArray['categoryUid'] = t3lib_div::_POST('categoryUid');
+		} else if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('insert_submit') != '') {
+			$this->configurationArray['csvPath'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('csvPath');
+			$this->configurationArray['ausstellungUid'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('ausstellungUid');
+			$this->configurationArray['categoryUid'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('categoryUid');
 			$this->processInserts();
 			$content = '<b>Inserts durchgeführt</b>';
 		} else {
@@ -103,7 +104,7 @@ class ext_update {
 	 */
 	protected function generateForm() {
 		return
-		'<form action="' . t3lib_div::getIndpEnv('REQUEST_URI') . '" method="POST">' .
+		'<form action="' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI') . '" method="POST">' .
 		'<h2>Update</h2>' .
 		'<p>This script will do the following:</p>' .
 		'<ul >' .
@@ -178,49 +179,34 @@ class ext_update {
 					//die('Could not enter data: ' . mysql_error());
 				} else {
 					if ($GLOBALS['TYPO3_DB']->sql_num_rows($result) == 0) {
-						if(empty($data[4])) {
-							$data[4] = '';
-						}
+						if(empty($data[4])) {$data[4] = '';}
 						if(empty($data[3])) {$data[3] = '';}
 						if(empty($data[2])) {$data[2] = '';}
 						if(empty($data[1])) {$data[1] = '';}
 						if(empty($data[5])) {$data[5] = '';}
 						if(empty($data[6])) {$data[6] = '';}
 						if(empty($data[7])) {$data[7] = '';}
+						if(empty($data[8])) {$data[8] = '';}
 						//INSERT
-						/*
-						$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
-								array(
-										'name' => $data[0],
-										'decription' => $data[7],
-										'url' => $data[1],
-										'facebook' => $data[2],
-										'other' => $data[3],
-										'instagram' => $data[3],
-										'twitter' => $data[4],
-										'other' => $data[5],
-										'email' => $data[6],
-										'pid' => '4',
+						
+						$insertFieldList = array(
+										'name' => trim($data[0]), 
+										'decription' =>  $data[1],
+										'url' => $data[3],
+										'facebook' => $data[4],
+										'instagram' => $data[5],
+										'twitter' => $data[6],
+										'other' => $data[7],
+										'video' => $data[8],
+										'pid' => $this->configurationArray['storagePid'],
 										'tstamp' => 'TIMESTAMP(NOW())',
 										'crdate' => 'TIMESTAMP(NOW())'
-								));
+								);
+						$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,$insertFieldList);
 						$this->messageArray[] = array(FlashMessage::OK, 'Insert SQL: ', $retsql);
-						*/
-						$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table, 
-								array(
-										'name' => trim($data[0]), 
-										'decription' => $data[4] . "<br />" . $data[1]. "<br />" . $data[2],
-										//'url' => $data[1],
-										/*'facebook' => $data[2],
-										'other' => $data[3],
-										'instagram' => $data[3],
-										'twitter' => $data[4],
-										'other' => $data[5],
-										'email' => $data[6],*/
-										'pid' => '4',
-										'tstamp' => 'TIMESTAMP(NOW())',
-										'crdate' => 'TIMESTAMP(NOW())' 
-								));
+						
+						$retval = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table, $insertFieldList);
+							
 						if(! $retval )
 						{
 							//die('Could not enter data: ' . mysql_error());
@@ -240,42 +226,31 @@ class ext_update {
 					} else {
 						//UPDATE
 						while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
-							if(empty($data[4])) {
-								$data[4] = '';
-							}
+							if(empty($data[4])) {$data[4] = '';}
 							if(empty($data[3])) {$data[3] = '';}
 							if(empty($data[2])) {$data[2] = '';}
 							if(empty($data[1])) {$data[1] = '';}
 							if(empty($data[5])) {$data[5] = '';}
 							if(empty($data[6])) {$data[6] = '';}
 							if(empty($data[7])) {$data[7] = '';}
-							/*
-							$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row['uid'], 
-									array(
-											'decription' => $data[7],
-											'url' => $data[1],
-											'facebook' => $data[2],
-											'other' => $data[3],
-											'instagram' => $data[3],
-											'twitter' => $data[4],
-											'other' => $data[5],
-											'email' => $data[6]
+							if(empty($data[8])) {$data[8] = '';}
 							
-									));
+							$updateFieldList = array(
+											'decription' =>  $data[1],
+											'url' => $data[3],
+											'facebook' => $data[4],
+											'instagram' => $data[5],
+											'twitter' => $data[6],
+											'other' => $data[7],
+											'video' => $data[8],
+											'tstamp' => 'TIMESTAMP(NOW())'
+							
+									);
+							$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row['uid'], $updateFieldList);
 							$this->messageArray[] = array(FlashMessage::OK, 'Update SQL: ', $retsql);	
-							*/
-							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], 
-									array(
-											'decription' => $data[4] . "<br />" . $data[1]. "<br />" . $data[2]
-											/*'url' => $data[1],
-											'facebook' => $data[2],
-											'other' => $data[3],
-											'instagram' => $data[3],
-											'twitter' => $data[4],
-											'other' => $data[5],
-											'email' => $data[6]*/
 							
-									));
+							$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row['uid'], $updateFieldList);
+								
 							if(! $retval )
 							{
 								//die('Could not enter data: ' . mysql_error());
@@ -296,59 +271,54 @@ class ext_update {
 						//die('Could not find translation data: ' . mysql_error());
 					} else {
 						if ($GLOBALS['TYPO3_DB']->sql_num_rows($result_trans) == 0) {
-							if(empty($data[8])) {
-								$data[8] = '';
+							if(empty($data[2])) {
+								$data[2] = '';
 							}
 							//INSERT new translation
-							$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,
-									array(
+							$insertTransFieldList = array(
 											'name' => $data[0],
-											'decription' => $data[8],
+											'decription' => $data[2],
 											'sys_language_uid' => '1',
-											'pid' => '4',
+											'pid' => $this->configurationArray['storagePid'],
 											'l10n_parent' => $uid,
 											'tstamp' => 'TIMESTAMP(NOW())',
 											'crdate' => 'TIMESTAMP(NOW())'
-									));
+									);
+							$retsql = $GLOBALS['TYPO3_DB']->INSERTquery($table,$insertTransFieldList);
+
 							$this->messageArray[] = array(FlashMessage::OK, 'Translate insert SQL: ', $retsql);
-							/*	
-							$retval_trans = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table,
-									array(
-											'name' => $data[0],
-											'decription' => $data[8],
-											'sys_language_uid' => '1',
-											'pid' => '4',
-											'l10n_parent' => $uid,
-											'tstamp' => 'TIMESTAMP(NOW())',
-											'crdate' => 'TIMESTAMP(NOW())'
-									));
+								
+							$retval_trans = $GLOBALS['TYPO3_DB']->exec_INSERTquery($table,$insertTransFieldList);
+								
 							if(! $retval_trans )
 							{
 								//die('Could not enter data: ' . mysql_error());
 							}
 							$uid_trans = $GLOBALS['TYPO3_DB']->sql_insert_id();
-							*/
+							
 								
 								
 						} else {
 							//UPDATE translation
 							while ($row_trans = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result_trans)) {
-								$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row_trans['uid'],
-										array(
-												'decription' => $data[8]
-										));
-								$this->messageArray[] = array(FlashMessage::OK, 'Update SQL: ', $retsql);	
-								/*
-								$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row_trans['uid'],
-										array(
-												'decription' => $data[8]
-										));
+								
+								$updateTransFieldList = array(
+												'decription' => $data[2]
+										);
+								if($uid > 0) {
+									$updateTransFieldList['l10n_parent'] = $uid;
+								}
+								$retsql = $GLOBALS['TYPO3_DB']->UPDATEquery($table, 'uid='.$row_trans['uid'],$updateTransFieldList);
+								$this->messageArray[] = array(FlashMessage::OK, 'Translate update SQL: ', $retsql);	
+								
+								$retval = $GLOBALS['TYPO3_DB']->exec_UPDATEquery($table, 'uid='.$row_trans['uid'],$updateTransFieldList);
+									
 								if(! $retval_trans )
 								{
 									//die('Could not enter data: ' . mysql_error());
 								}
 								$uid_trans = $row_trans['uid'];
-								*/
+								
 							}
 						}
 					}
@@ -468,7 +438,7 @@ class ext_update {
 					'uid_foreign' => $arter['uid'], // uid of your content record
 					'tablenames' => 'tx_vcamillerntor_domain_model_kuenstler',
 					'fieldname' => 'logo',
-					'pid' => 4, // parent id of the parent page
+					'pid' => $this->configurationArray['storagePid'], // parent id of the parent page
 					'table_local' => 'sys_file',
 					'sorting_foreign' => '-1',	
 				);
@@ -481,12 +451,12 @@ class ext_update {
 				
 				$message = $arter['noblank'].' found '.$found_value;
 				if ($tce->errorLog) {
-				    $message .= 'TCE->errorLog:'.t3lib_utility_Debug::viewArray($tce->errorLog);
+				    $message .= 'TCE->errorLog:'.TYPO3\CMS\Core\Utility\DebugUtility::viewArray($tce->errorLog);
 				} else {
 					if($cnt > 0) {
 						$message .= '<br>earlyer images incremended: '.$cnt;
 					}
-				    $message .= '<br>image changed <br>'.t3lib_utility_Debug::viewArray($data);
+				    $message .= '<br>image changed <br>'.TYPO3\CMS\Core\Utility\DebugUtility::viewArray($data);
 				}
 				
 				
