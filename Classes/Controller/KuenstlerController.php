@@ -39,6 +39,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 *
 	 * @var \VCA\VcaMillerntor\Domain\Repository\KuenstlerRepository
 	 * @inject
+	 * @lazy
 	 */
 	protected $kuenstlerRepository;
 	/**
@@ -46,6 +47,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 *
 	 * @var \VCA\VcaMillerntor\Domain\Repository\AusstellungRepository
 	 * @inject
+	 * @lazy
 	 */
 	protected $ausstellungRepository;
 	/**
@@ -53,6 +55,7 @@ class KuenstlerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 *
 	 * @var TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
 	 * @inject
+	 * @lazy
 	 */
 	protected $categoryRepository;
 

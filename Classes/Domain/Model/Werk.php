@@ -58,13 +58,13 @@ class Werk extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * artist
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler>
 	 */
 	protected $artist;
 	/**
 	 * ausstellung
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung>
 	 */
 	protected $ausstellung;

@@ -67,14 +67,14 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * werk
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Werk>
 	 */
 	protected $werk;
 	
 	/**
 	 * ausstellung
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung>
 	 */
 	protected $ausstellung;
@@ -134,6 +134,27 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 */
 	protected $other;
+
+	/**
+	 * _languageUid
+	 * @var int
+	 */
+	protected $_languageUid;
+
+	/**
+	 * @param int $_languageUid
+	 * @return void
+	 */
+	public function set_languageUid($_languageUid) {
+	    $this->_languageUid = $_languageUid;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function get_languageUid() {
+	    return $this->_languageUid;
+	}
 
 	/**
 	 * __construct
@@ -346,15 +367,6 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getLogo() {
 		return $this->logo;
-		
-		//$imageFiles = array();
-		/** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo */
-		/*
-		foreach ($this->logo as $image) {
-			$imageFiles[] = $image->getOriginalResource()->toArray();
-		}
-		!empty($imageFiles[0]) ? $imageFiles[0] : 'typo3conf/ext/theme_millerntor/Resources/Public/Images/back_millerntor_gallery.png';
-		*/
 	}
 
 	/**

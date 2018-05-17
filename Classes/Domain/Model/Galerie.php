@@ -51,7 +51,7 @@ class Galerie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * austellungen
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Ausstellung>
 	 */
 	protected $austellungen;

@@ -66,14 +66,14 @@ class Ausstellung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * werke
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Werk>
 	 */
 	protected $werke;
 	
 	/**
 	 * kuenstler
-	 *
+	 * @lazy
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VCA\VcaMillerntor\Domain\Model\Kuenstler>
 	 */
 	protected $kuenstler;
