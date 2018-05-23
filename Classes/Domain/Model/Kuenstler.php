@@ -143,6 +143,13 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $other;
 
 	/**
+	 * URL regex match
+	 *
+	 * @var \string
+	 */
+	protected $_urlMatcher = "/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/";
+
+	/**
 	 * _languageUid
 	 * @var int
 	 */
@@ -300,7 +307,15 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \string $facebook
 	 */
 	public function getFacebook() {
-		return $this->facebook;
+		if(empty($this->facebook )) {
+			return $this->facebook;
+		}
+		else if(preg_match($this->_urlMatcher,$this->facebook)) {
+			return $this->facebook;
+		} else {
+			return "https://www.facebook.com/".$this->facebook;
+		}
+		
 	}
 
 	/**
@@ -318,7 +333,14 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \string $twitter
 	 */
 	public function getTwitter() {
-		return $this->twitter;
+		if(empty($this->twitter )) {
+			return $this->twitter;
+		}
+		else if(preg_match($this->_urlMatcher,$this->twitter)) {
+			return $this->twitter;	
+		} else {
+			return "https://www.twitter.com/".$this->twitter;
+		}
 	}
 
 	/**
@@ -336,7 +358,14 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \string $instagram
 	 */
 	public function getInstagram() {
-		return $this->instagram;
+		if(empty($this->instagram )) {
+			return $this->instagram;
+		}
+		else if(preg_match($this->_urlMatcher,$this->instagram)) {
+			return $this->instagram;	
+		} else {
+			return "https://www.instagram.com/".$this->instagram;
+		}
 	}
 
 	/**
