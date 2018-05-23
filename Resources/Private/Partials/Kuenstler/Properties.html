@@ -44,6 +44,11 @@
 					{kuenstler.instagram}
 			</f:link.external><br />
 		</f:if>
+		<f:if condition="{kuenstler.video}">
+	    	<f:link.external  uri="{kuenstler.video}" target="_blank" class="linkExternal linkVd">
+					{kuenstler.video}
+			</f:link.external><br />
+		</f:if>
 		
 		<f:if condition="{kuenstler.other}">
 				<p><f:translate key="presented_by" /> {kuenstler.other}</p>

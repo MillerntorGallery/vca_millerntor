@@ -129,6 +129,13 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $instagram;
 
 	/**
+	 * video url of artist
+	 *
+	 * @var \string
+	 */
+	protected $video;
+
+	/**
 	 * other link of artist
 	 *
 	 * @var \string
@@ -358,6 +365,25 @@ class Kuenstler extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setOther($other) {
 		$this->other = $other;
+	}
+
+	/**
+	 * Returns the video url of artist
+	 *
+	 * @return \string $video
+	 */
+	public function getVideo() {
+		return $this->video;
+	}
+
+	/**
+	 * Sets the video url
+	 *
+	 * @param \string $video
+	 * @return void
+	 */
+	public function setVideo($video) {
+		$this->video = $video;
 	}
 
 	/**
