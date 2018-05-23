@@ -7,7 +7,7 @@
 			<f:for each="{kuenstler.logo}" as="image" iteration="iterator">		
 				<f:if condition="{iterator.isFirst}">
 					<f:link.action action="show" pageUid="{settings.detailPid}" controller="Kuenstler" arguments="{kuenstler : kuenstler}" class="img-link">	
-						<f:image src="{image.uid}" treatIdAsReference="1" alt="{kuenstler.name}" width="200" /> 
+						<f:image src="{image.uid}" treatIdAsReference="1" alt="{kuenstler.name}" width="200" class="{v:iterator.random(subject: settings.randomClasses)}" /> 
 					</f:link.action>
 				</f:if>
 			</f:for>	
