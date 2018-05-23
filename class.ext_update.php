@@ -57,7 +57,7 @@ class ext_update {
 	 */
 	public function __construct() {
 		$this->configurationArray = array(
-			'ausstellungUid'=>'6',
+			'ausstellungUid'=>'8',
 			'categoryUid'=>'1',
 			'imagePath' => '/media/2017/artists/art/',	
 			'csvPath' => '/fileadmin/media/2018/data',
@@ -400,7 +400,7 @@ class ext_update {
 			$message = 'File';
 			$status = FlashMessage::INFO;
 				
-			//$this->messageArray[] = array($status, $name, $message);
+			$this->messageArray[] = array($status, $name, $message);
 		}
 		$count_artists = 0;
 		$count_artists_found = 0;
