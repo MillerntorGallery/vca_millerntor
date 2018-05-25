@@ -81,7 +81,7 @@
           </settings.showCategory>
           <settings.detailPid>
             <TCEforms>
-              <displayCond>FIELD:switchableControllerActions:=:Kuenstler->list,Kuenstler->teaser,Kuenstler->insertRecord</displayCond>  
+              <displayCond>FIELD:switchableControllerActions:=:Kuenstler->list</displayCond>  
               <exclude>1</exclude>
               <label>Künstler-Detail-Seite</label>
               <config>
