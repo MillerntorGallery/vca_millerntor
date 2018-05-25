@@ -148,44 +148,9 @@ jQuery(document).ready(function() {
     }
     
       //first load images than go on...
-    $container.imagesLoaded(function() {
-        //find text pics
-        $('.item .csc-textpic').each(function(index,element) {
-          var $element = $(element);
-          
-          /*
-          $element.addClass('flip_container vert');
-          $element.find('.csc-textpic-imagewrap').addClass('flip_card shadow');
-          $element.find('.csc-textpic-firstcol').addClass('front face');
-          $element.find('.csc-textpic-lastcol').addClass('back face');
-          */
-          $element.addClass('flip_container vert');
-          $element.find('.csc-textpic-imagewrap').addClass('flip_card shadow');
-          $element.find('.csc-textpic-firstcol').addClass('front face');
-          $element.find('.csc-textpic-lastcol').addClass('back face');
-          
-
-        });
-        //this timer is just a bugfix on safari
-        setTimeout(function() {
-          
-        //find flip_container in container
-      
-      $('.flip_container').each(function(index, element) {
-        var $element = $(element);
-        var height = $element.find('.front img').height();
-        var width = $element.find('.front img').width();
-        $element.css('height',height);
-        $element.css('width',width);
-        $element.find('.back .well').css('height',height);
-        $element.find('.back .well').css('width',width);
-      });
-
+    $container.imagesLoaded(function() {        
       // set up Isotope 
       $container.isotope( setupOptions );
-        }, 1000);
-
-      
     });
       
 
